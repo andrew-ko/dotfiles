@@ -16,10 +16,15 @@ Plugin 'tpope/vim-repeat'              " Remaps . in a way that plugins can tap 
 Plugin 'tpope/vim-unimpaired'          " Complementary pairs of mappings
 Plugin 'tpope/vim-endwise'             " This is a simple plugin that helps to end certain structures automatically. (ruby, cpp, objc, lua, vim, ...)
 
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'nanotech/jellybeans.vim'
+
 Plugin 'tpope/vim-dispatch'            " Leverage the power of Vim's compiler plugins without being bound by synchronicity.
 
 Plugin 'godlygeek/tabular'             " Text alignment http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
 Plugin 'ervandew/supertab'             " Supertab is a vim plugin which allows you to use <Tab> for all your insert completion needs (:help ins-completion).
+" Plugin 'editorconfig/editorconfig-vim' " :help editorconfig http://editorconfig.org/
 Plugin 'xolox/vim-misc'                " Basically it's an extended standard library of Vim script functions that I wrote during the development of my Vim profile and plug-ins.
 Plugin 'xolox/vim-easytags'            " Automated tag (ctags) generation and syntax highlighting in Vim
 
@@ -37,12 +42,6 @@ Plugin 'mbbill/undotree'               " <leader>q :UndotreeToggle (F5 - default
 Plugin 'mileszs/ack.vim'               " Ack-grep in vim. Ack can be used as a replacement for 99% of the uses of grep.
 Plugin 'majutsushi/tagbar'             " Browse the tags of the current file and get an overview of its structure
 " /Vim navigation -------------------
-
-" Colors ----------------------------
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'nanotech/jellybeans.vim'
-" /Colors ---------------------------
 
 " Markup, notation, configs ---------
 Plugin 'stephpy/vim-yaml'           " Override vim syntax for yaml files. Yaml files in vim 7.4 are really slow, due to core yaml syntax. This syntax is simpler/faster.
@@ -163,7 +162,7 @@ let g:easytags_async = 1
 
 " Enable omni completion.
 set omnifunc=syntaxcomplete#Complete
-" ------------------------------------------------------
+" ----------------------------------
 
 autocmd FileType ruby compiler ruby
 
@@ -172,7 +171,7 @@ autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd FileType ruby,eruby let g:rubycomplete_use_bundler = 1
 
-" UltiSnips --------------------------------------------
+" UltiSnips"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
@@ -182,13 +181,14 @@ let g:UltiSnipsJumpBackwardTrigger="<C-z>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
-" /UltiSnips -------------------------------------------
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:buffergator_viewport_split_policy = "B"
 let g:buffergator_sort_regime = "mru"
 
 
-" Syntastic --------------------------------------------
+" Syntastic ----------------------------------------
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -212,11 +212,11 @@ let g:syntastic_twig_twiglint_exec = 'php'
 let g:syntastic_twig_twiglint_exe = '~/.composer/vendor/bin/twig-lint'
 " Syntastic Toggle 'togglemod'
 nmap <leader>s :SyntasticToggleMode<CR>
-" /Syntastic -------------------------------------------
+" /Syntastic ---------------------------------------
 
-" Emmet ------------------------------------------------
+" Emmet --------------------------------------------
 let g:user_emmet_leader_key='<C-e>'
-" /Emmet -----------------------------------------------
+" /Emmet -------------------------------------------
 
 nmap <leader>m :TagbarToggle<CR>
 nnoremap <leader>q :UndotreeToggle<CR>
@@ -253,9 +253,9 @@ vmap <Leader>a: :Tabularize /:\zs<CR>
 nmap <Leader>a= :Tabularize /=<CR>
 vmap <Leader>a= :Tabularize /=<CR>
 " endif
-" /Tabularize mappings ---------------------------------
+" /Tabularize mappings ----------------------------------
 
-" NERDTree ---------------------------------------------
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <C-\> :NERDTreeFind<CR>
 nmap <silent> <leader><leader> :NERDTreeToggle<CR>
 let NERDTreeIgnore = ['\.pyc$']
@@ -286,7 +286,7 @@ call NERDTreeHighlightFile('rb', '167', 'none', '#d75f5f', '#151515')
 call NERDTreeHighlightFile('erb', '147', 'none', '#afafff', '#151515')
 
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
-" /NERDTree --------------------------------------------
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " reload current file
 nmap <leader>r :edit<CR>
 
