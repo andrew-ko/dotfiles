@@ -1,0 +1,12 @@
+[user]
+	email = andrkvlnko@gmail.com
+	name = Andrew
+[core]
+	editor = vim
+[alias]
+	st = status
+	last = log -1 HEAD
+	co = checkout
+	br = branch
+[diff]
+	external = /usr/local/bin/git-diff.sh

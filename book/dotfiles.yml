@@ -1,0 +1,33 @@
+---
+- hosts: all
+  tasks:
+    - apt: name={{ item }} state=latest update_cache=yes
+      become: yes
+      with_items:
+        - vim-nox
+        - tmux
+        - ack-grep
+        - exuberant-ctags
+        - curl
+
+    - file: src={{ curdir }}/files/{{ item }} dest=~/.{{ item }} state=link
+      with_items:
+        - vimrc
+        - gitconfig
+        - tmux.conf
+        - eslintrc
+
+    - lineinfile: dest="~/.profile" line="set -o vi"
+    - lineinfile: dest="~/.bash_aliases" line='alias tmux="tmux -2"'
+    - lineinfile: dest="~/.bash_aliases" line='alias ks-tmux="tmux kill-session"'
+
+
+    - git:
+        repo: 'https://github.com/VundleVim/Vundle.vim.git'
+        dest: ~/.vim/bundle/Vundle.vim
+
+    - file: path=~/.vim/spell state=directory
+
+    - command: vim -i NONE -c PluginUpdate -c quitall
+
+    - command: make chdir=~/.vim/bundle/vimproc.vim/
