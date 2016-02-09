@@ -19,6 +19,7 @@ Plugin 'tpope/vim-endwise'             " This is a simple plugin that helps to e
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'nanotech/jellybeans.vim'
+Plugin 'morhetz/gruvbox'
 
 Plugin 'tpope/vim-dispatch'            " Leverage the power of Vim's compiler plugins without being bound by synchronicity.
 
@@ -140,8 +141,18 @@ set expandtab
 
 " set background=dark
 set t_Co=256
+" colorscheme PaperColor
+" if !empty(glob("~/.vim/bundle/jellybeans.vim"))
+"   colorscheme jellybeans
+" endif
+
+" get italics in gnome-terminal
+" http://askubuntu.com/questions/492592/can-i-get-italics-in-gnome-terminal
+set t_ZH=[3m
+set t_ZR=[23m
+let g:gruvbox_italic=1
 if !empty(glob("~/.vim/bundle/jellybeans.vim"))
-  colorscheme jellybeans
+  colorscheme gruvbox
 endif
 
 " ================ Persistent Undo ==================
