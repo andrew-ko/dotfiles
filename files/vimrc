@@ -143,7 +143,6 @@ set expandtab
 
 " set background=dark
 set t_Co=256
-" colorscheme PaperColor
 " if !empty(glob("~/.vim/bundle/jellybeans.vim"))
 "   colorscheme jellybeans
 " endif
@@ -153,7 +152,7 @@ set t_Co=256
 set t_ZH=[3m
 set t_ZR=[23m
 let g:gruvbox_italic=1
-if !empty(glob("~/.vim/bundle/jellybeans.vim"))
+if !empty(glob("~/.vim/bundle/gruvbox"))
   colorscheme gruvbox
 endif
 
