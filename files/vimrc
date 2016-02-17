@@ -16,23 +16,25 @@ Plugin 'tpope/vim-repeat'              " Remaps . in a way that plugins can tap 
 Plugin 'tpope/vim-unimpaired'          " Complementary pairs of mappings
 Plugin 'tpope/vim-endwise'             " This is a simple plugin that helps to end certain structures automatically. (ruby, cpp, objc, lua, vim, ...)
 
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'nanotech/jellybeans.vim'
-Plugin 'morhetz/gruvbox'
-
 Plugin 'tpope/vim-dispatch'            " Leverage the power of Vim's compiler plugins without being bound by synchronicity.
 
 Plugin 'godlygeek/tabular'             " Text alignment http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
 Plugin 'ervandew/supertab'             " Supertab is a vim plugin which allows you to use <Tab> for all your insert completion needs (:help ins-completion).
 " Plugin 'editorconfig/editorconfig-vim' " :help editorconfig http://editorconfig.org/
 Plugin 'xolox/vim-misc'                " Basically it's an extended standard library of Vim script functions that I wrote during the development of my Vim profile and plug-ins.
-Plugin 'xolox/vim-easytags'            " Automated tag (ctags) generation and syntax highlighting in Vim
+" Plugin 'xolox/vim-easytags'            " Automated tag (ctags) generation and syntax highlighting in Vim
 
 Plugin 'Valloric/MatchTagAlways'       " Always highlight enclosing tags
 
 Plugin 'tpope/vim-git'                 " Included are syntax, indent, and filetype plugin files for git, gitcommit, gitconfig, gitrebase, and gitsendemail.
 Plugin 'tpope/vim-fugitive'            " The best Git wrapper of all time
+
+" Colors ----------------------------
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'nanotech/jellybeans.vim'        " color scheme
+Plugin 'morhetz/gruvbox'                " color scheme
+" /Colors ---------------------------
 
 " Vim navigation, buffers, search ---
 Plugin 'scrooloose/nerdtree'
@@ -169,7 +171,8 @@ let g:jsx_ext_required = 0
 let g:vim_json_syntax_conceal = 0
 let g:vim_markdown_folding_disabled = 1
 
-let g:easytags_async = 1
+" let g:easytags_async = 1
+" :autocmd FileType php let b:easytags_auto_highlight = 0
 
 " Enable omni completion.
 set omnifunc=syntaxcomplete#Complete
@@ -263,6 +266,8 @@ nmap <Leader>a: :Tabularize /:\zs<CR>
 vmap <Leader>a: :Tabularize /:\zs<CR>
 nmap <Leader>a= :Tabularize /=<CR>
 vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a== :Tabularize /==<CR>
+vmap <Leader>a== :Tabularize /==<CR>
 " endif
 " /Tabularize mappings ----------------------------------
 
@@ -286,12 +291,13 @@ call NERDTreeHighlightFile('yml', '141', 'none', '#af87ff', '#151515')
 " call NERDTreeHighlightFile('config', 'LightYellow', 'none', 'LightYellow', '#151515')
 " call NERDTreeHighlightFile('conf', 'LightYellow', 'none', 'LightYellow', '#151515')
 " call NERDTreeHighlightFile('json', 'LightYellow', 'none', 'LightYellow', '#151515')
-call NERDTreeHighlightFile('html', 'LightYellow', 'none', 'LightYellow', '#151515')
+call NERDTreeHighlightFile('html', '73', 'none', '73', '#151515')
+call NERDTreeHighlightFile('jsx', '33', 'none', '33', '#151515')
 call NERDTreeHighlightFile('twig', '34', 'none', '#00af00', '#151515')
 call NERDTreeHighlightFile('less', 'LightBlue', 'none', 'LightBlue', '#151515')
 call NERDTreeHighlightFile('css', '77', 'none', '#5fd75f', '#151515')
 call NERDTreeHighlightFile('coffee', '221', 'none', '#ffd75f', '#151515')
-call NERDTreeHighlightFile('js', '221', 'none', '#ffd75f', '#151515')
+call NERDTreeHighlightFile('js', '208', 'none', '#ffd75f', '#151515')
 call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 call NERDTreeHighlightFile('rb', '167', 'none', '#d75f5f', '#151515')
 call NERDTreeHighlightFile('erb', '147', 'none', '#afafff', '#151515')
