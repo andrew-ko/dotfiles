@@ -1,4 +1,5 @@
-.PHONY: default help
+.PHONY: default help dotfiles
+
 default: help
 
 vim_configure:
@@ -13,17 +14,8 @@ install_ansible:
 	sudo apt-get update
 	sudo apt-get install ansible
 
-.PHONY: composer
-composer:
-	ansible-playbook book/composer.yml -i local
-
-.PHONY: codeception
-codeception:
-	ansible-playbook book/codeseption.yml -i local
-
-.PHONY: dotfiles
 dotfiles:
-	ansible-playbook book/dotfiles.yml -i local -vv -e curdir=$(CURDIR)
+	ansible-playbook book/dotfiles.yml -i local -vv
 
 help:
 	@echo 'targets:'
