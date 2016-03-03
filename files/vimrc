@@ -233,9 +233,13 @@ let g:user_emmet_leader_key='<C-e>'
 
 nmap <leader>m :TagbarToggle<CR>
 nnoremap <leader>q :UndotreeToggle<CR>
+
+" Dispatch -----------------------------------------
 nnoremap <leader>di :Dispatch<CR>
 autocmd FileType ruby let b:dispatch = 'ruby %'
 autocmd FileType php let b:dispatch = 'phpunit %'
+autocmd FileType javascript let b:dispatch = 'mocha %'
+" /Dispatch ----------------------------------------
 
 " Map ctrl-movement keys to window switching
 map <C-k> <C-w><Up>
