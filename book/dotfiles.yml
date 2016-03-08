@@ -13,9 +13,8 @@
     - file: src={{ curdir }}/files/{{ item }} dest=~/.{{ item }} state=link
       with_items:
         - vimrc
-        - gitconfig
+        - bash_aliases
         - tmux.conf
-        - eslintrc
 
     - lineinfile: dest="~/.profile" line="set -o vi"
       # next one only for groovebox plugin and gnome-term

@@ -15,7 +15,7 @@ install_ansible:
 	sudo apt-get install ansible
 
 dotfiles:
-	ansible-playbook book/dotfiles.yml -i local -vv
+	ansible-playbook book/dotfiles.yml -i local -vv -e curdir=$(CURDIR)
 
 help:
 	@echo 'targets:'
