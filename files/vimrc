@@ -16,13 +16,12 @@ Plugin 'tpope/vim-commentary'          " Comment stuff out
 Plugin 'tpope/vim-repeat'              " Remaps . in a way that plugins can tap into it.
 Plugin 'tpope/vim-unimpaired'          " Complementary pairs of mappings
 Plugin 'tpope/vim-endwise'             " This is a simple plugin that helps to end certain structures automatically. (ruby, cpp, objc, lua, vim, ...)
-
 Plugin 'tpope/vim-dispatch'            " Leverage the power of Vim's compiler plugins without being bound by synchronicity.
 
 Plugin 'godlygeek/tabular'             " Text alignment http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
 Plugin 'ervandew/supertab'             " Supertab is a vim plugin which allows you to use <Tab> for all your insert completion needs (:help ins-completion).
 " Plugin 'editorconfig/editorconfig-vim' " :help editorconfig http://editorconfig.org/
-Plugin 'xolox/vim-misc'                " Basically it's an extended standard library of Vim script functions that I wrote during the development of my Vim profile and plug-ins.
+" Plugin 'xolox/vim-misc'                " Basically it's an extended standard library of Vim script functions that I wrote during the development of my Vim profile and plug-ins.
 " Plugin 'xolox/vim-easytags'            " Automated tag (ctags) generation and syntax highlighting in Vim
 
 Plugin 'Valloric/MatchTagAlways'       " Always highlight enclosing tags
@@ -33,7 +32,7 @@ Plugin 'tpope/vim-fugitive'            " The best Git wrapper of all time
 " Colors ----------------------------
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'nanotech/jellybeans.vim'        " color scheme
+" Plugin 'nanotech/jellybeans.vim'        " color scheme
 Plugin 'morhetz/gruvbox'                " color scheme
 " /Colors ---------------------------
 
@@ -82,14 +81,13 @@ Plugin 'tpope/vim-bundler'
 
 " PHP --------------------------------
 Plugin '2072/PHP-Indenting-for-VIm' " This is the official PHP indentation plug-in for VIm
-Plugin 'mikehaertl/yii2-apidoc-vim' " Yii 2 API docs for Vim
-Plugin 'shawncplus/phpcomplete.vim' " Improved PHP omni-completion. Based on the default phpcomplete.vim. Namespace support ( Requires patched ctags )
 Plugin 'joonty/vim-phpqa'           " Plugin that integrates PHP quality checking tools
+Plugin 'mikehaertl/yii2-apidoc-vim' " Yii 2 API docs for Vim
+" Plugin 'shawncplus/phpcomplete.vim' " Improved PHP omni-completion. Based on the default phpcomplete.vim. Namespace support ( Requires patched ctags )
 " /PHP -------------------------------
 
 " Snippets UltiSnips
 Plugin 'SirVer/ultisnips'     " Track the engine.
-" Plugin 'honza/vim-snippets' " Snippets are separated from the engine. Add this if you want them:
 Plugin 'mattn/emmet-vim'
 
 " Vim Tmux Navigator
@@ -300,24 +298,18 @@ function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
   exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
 endfunction
 
-call NERDTreeHighlightFile('jade', 'cyan', 'none', 'cyan', '#151515')
-" call NERDTreeHighlightFile('Makefile', 'Black', 'none', 'grey', '#151515')
 call NERDTreeHighlightFile('lock', 'Black', 'none', 'grey', '#151515')
-call NERDTreeHighlightFile('eslintrc', 'yellow', 'none', 'yellow', '#151515')
-" call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
 call NERDTreeHighlightFile('yml', '141', 'none', '#af87ff', '#151515')
-" call NERDTreeHighlightFile('config', 'LightYellow', 'none', 'LightYellow', '#151515')
-" call NERDTreeHighlightFile('conf', 'LightYellow', 'none', 'LightYellow', '#151515')
-" call NERDTreeHighlightFile('json', 'LightYellow', 'none', 'LightYellow', '#151515')
 call NERDTreeHighlightFile('html', '73', 'none', '73', '#151515')
+call NERDTreeHighlightFile('haml', '73', 'none', '73', '#151515')
 call NERDTreeHighlightFile('jade', '73', 'none', '73', '#151515')
 call NERDTreeHighlightFile('slim', '73', 'none', '73', '#151515')
-call NERDTreeHighlightFile('jsx', '33', 'none', '33', '#151515')
 call NERDTreeHighlightFile('twig', '34', 'none', '#00af00', '#151515')
 call NERDTreeHighlightFile('less', 'LightBlue', 'none', 'LightBlue', '#151515')
 call NERDTreeHighlightFile('css', '77', 'none', '#5fd75f', '#151515')
-call NERDTreeHighlightFile('coffee', '221', 'none', '#ffd75f', '#151515')
 call NERDTreeHighlightFile('js', '208', 'none', '#ffd75f', '#151515')
+call NERDTreeHighlightFile('jsx', '33', 'none', '33', '#151515')
+call NERDTreeHighlightFile('coffee', '221', 'none', '#ffd75f', '#151515')
 call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 call NERDTreeHighlightFile('rb', '167', 'none', '#d75f5f', '#151515')
 call NERDTreeHighlightFile('erb', '147', 'none', '#afafff', '#151515')
@@ -352,6 +344,7 @@ au BufRead,BufNewFile {.bash_aliases,bash_aliases} set ft=sh
 " comments types
 autocmd FileType php setlocal commentstring=#\ %s
 autocmd FileType slim setlocal commentstring=/\ %s
+autocmd FileType pug setlocal commentstring=//-\ %s
 
 " au FileType ruby setl sw=2 sts=2 et
 " au FileType eruby setl sw=2 sts=2 et

@@ -1,3 +1,4 @@
+# alias tmux="tmux -2"
 alias tmux="env TERM=screen-256color tmux"
 alias ks-tmux="tmux kill-session"
 
@@ -5,5 +6,6 @@ alias ks-tmux="tmux kill-session"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ll="ls -alh"
+alias tl="tree -L 1"
 alias d="cd ~"
 alias c="clear"

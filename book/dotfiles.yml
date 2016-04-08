@@ -17,10 +17,10 @@
         - tmux.conf
 
     - lineinfile: dest="~/.profile" line="set -o vi"
-      # next one only for groovebox plugin and gnome-term
-    - lineinfile: dest="~/.profile" line='source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"'
     - lineinfile: dest="~/.bash_aliases" line='alias tmux="tmux -2"'
     - lineinfile: dest="~/.bash_aliases" line='alias ks-tmux="tmux kill-session"'
+      # next one only for groovebox plugin and gnome-term
+    - lineinfile: dest="~/.profile" line='source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"'
 
 
     - git:
