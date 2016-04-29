@@ -24,7 +24,7 @@ Plugin 'ervandew/supertab'             " Supertab is a vim plugin which allows y
 " Plugin 'xolox/vim-misc'                " Basically it's an extended standard library of Vim script functions that I wrote during the development of my Vim profile and plug-ins.
 " Plugin 'xolox/vim-easytags'            " Automated tag (ctags) generation and syntax highlighting in Vim
 
-Plugin 'Valloric/MatchTagAlways'       " Always highlight enclosing tags
+" Plugin 'Valloric/MatchTagAlways'       " Always highlight enclosing tags
 
 Plugin 'tpope/vim-git'                 " Included are syntax, indent, and filetype plugin files for git, gitcommit, gitconfig, gitrebase, and gitsendemail.
 Plugin 'tpope/vim-fugitive'            " The best Git wrapper of all time
@@ -32,7 +32,7 @@ Plugin 'tpope/vim-fugitive'            " The best Git wrapper of all time
 " Colors ----------------------------
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-" Plugin 'nanotech/jellybeans.vim'        " color scheme
+Plugin 'nanotech/jellybeans.vim'        " color scheme
 Plugin 'morhetz/gruvbox'                " color scheme
 " /Colors ---------------------------
 
@@ -67,9 +67,13 @@ Plugin 'wlangstroth/vim-racket'
 " /Lisp -----------------------------
 
 " JS --------------------------------
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
 Plugin 'moll/vim-node'
+Plugin 'othree/yajs.vim'
+Plugin 'othree/es.next.syntax.vim'
+Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'mxw/vim-jsx'
+Plugin 'isruslan/vim-es6'
+" Plugin 'pangloss/vim-javascript'
 " Plugin 'facebook/vim-flow'
 " /JS -------------------------------
 
@@ -89,9 +93,8 @@ Plugin 'mikehaertl/yii2-apidoc-vim' " Yii 2 API docs for Vim
 " Snippets UltiSnips
 Plugin 'SirVer/ultisnips'     " Track the engine.
 Plugin 'mattn/emmet-vim'
-
 " Vim Tmux Navigator
-" Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'christoomey/vim-tmux-navigator'
 
 call vundle#end()
 syntax on
@@ -100,7 +103,6 @@ filetype plugin indent on
 filetype plugin on
 
 let mapleader=","
-
 
 " Sets how many lines of history VIM has to remember
 set history=500
@@ -122,7 +124,7 @@ set lazyredraw
 
 set hidden
 set nofoldenable
-" set synmaxcol=128 " highlight where srt have more than 128 col
+" set synmaxcol=80
 
 "set ttyscroll=10
 "set encoding=utf-8
@@ -138,27 +140,33 @@ set nobackup
 set nowb
 set noswapfile
 
-set tabstop=4
-set shiftwidth=4
-" set smarttab
+" set tabstop=4
 set expandtab
+set shiftwidth=2
+set softtabstop=2
 
-" set background=dark
-set t_Co=256
-" if !empty(glob("~/.vim/bundle/jellybeans.vim"))
-"   colorscheme jellybeans
-" endif
+set colorcolumn=81
 
 " get italics in gnome-terminal
 " http://askubuntu.com/questions/492592/can-i-get-italics-in-gnome-terminal
 set t_ZH=[3m
 set t_ZR=[23m
+
+set t_Co=256
+
+" let g:jellybeans_use_term_italics = 1
+" if !empty(glob("~/.vim/bundle/jellybeans.vim"))
+"   colorscheme jellybeans
+" endif
+
+set background=dark
 let g:gruvbox_italic=1
 if !empty(glob("~/.vim/bundle/gruvbox"))
   colorscheme gruvbox
 endif
 
-" PHP codesniffer and messdetector ---
+" PHP ---
+hi! link phpVarSelector Identifier
 let g:phpqa_codesniffer_cmd='/home/andrewko/.composer/vendor/bin/phpcs'
 let g:phpqa_messdetector_cmd='/home/andrewko/.composer/vendor/phpmd/phpmd/src/bin/phpmd'
 let g:phpqa_messdetector_autorun = 0
@@ -166,7 +174,13 @@ let g:phpqa_open_loc = 1
 let g:phpqa_codesniffer_args = "--standard=PSR2"
 " /PHP ---
 
-" ================ Persistent Undo ==================
+" JavaScript ----------------
+let g:jsx_ext_required = 0
+let g:vim_json_syntax_conceal = 0
+let g:used_javascript_libs = 'underscore,react,flux,jquery,chai'
+" /JavaScript ---------------
+
+" Persistent Undo -----------
 " Keep undo history across sessions, by storing in file.
 " Only works all the time.
 if has('persistent_undo')
@@ -174,10 +188,8 @@ if has('persistent_undo')
   set undodir=~/.vim/backups
   set undofile
 endif
+" /Persistent Undo ----------
 
-let g:jsx_ext_required = 0
-
-let g:vim_json_syntax_conceal = 0
 let g:vim_markdown_folding_disabled = 1
 
 " let g:easytags_async = 1
@@ -187,7 +199,7 @@ let g:vim_markdown_folding_disabled = 1
 set omnifunc=syntaxcomplete#Complete
 " ----------------------------------
 
-autocmd FileType ruby compiler ruby
+autocmd FileType ruby compiler rubyunit
 
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
@@ -199,12 +211,10 @@ autocmd FileType ruby,eruby let g:rubycomplete_use_bundler = 1
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<leader><tab>"
 let g:UltiSnipsJumpBackwardTrigger="<C-z>"
-
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:buffergator_viewport_split_policy = "B"
@@ -223,6 +233,8 @@ let g:syntastic_check_on_wq = 0
 
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exec = 'eslint_d'
+let s:eslint_path = system('PATH=$(npm bin):$PATH && which eslint')
+let b:syntastic_javascript_eslint_exec = substitute(s:eslint_path, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
 
 " let g:syntastic_jade_checkers = ['jade_lint']
 
@@ -251,7 +263,7 @@ nnoremap <leader>q :UndotreeToggle<CR>
 nnoremap <leader>di :Dispatch<CR>
 autocmd FileType ruby let b:dispatch = 'ruby %'
 autocmd FileType php let b:dispatch = 'phpunit %'
-autocmd FileType javascript let b:dispatch = 'mocha %'
+autocmd FileType javascript let b:dispatch = 'node %'
 " /Dispatch ----------------------------------------
 
 " Map ctrl-movement keys to window switching
@@ -287,6 +299,15 @@ vmap <Leader>a== :Tabularize /==<CR>
 " endif
 " /Tabularize mappings ----------------------------------
 
+" Vim Tmux Navigator ------------------------------------
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
+" nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
+" /Vim Tmux Navigator -----------------------------------
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <C-\> :NERDTreeFind<CR>
 nmap <silent> <leader><leader> :NERDTreeToggle<CR>
@@ -304,7 +325,7 @@ call NERDTreeHighlightFile('html', '73', 'none', '73', '#151515')
 call NERDTreeHighlightFile('haml', '73', 'none', '73', '#151515')
 call NERDTreeHighlightFile('jade', '73', 'none', '73', '#151515')
 call NERDTreeHighlightFile('slim', '73', 'none', '73', '#151515')
-call NERDTreeHighlightFile('twig', '34', 'none', '#00af00', '#151515')
+" call NERDTreeHighlightFile('twig', '34', 'none', '#00af00', '#151515')
 call NERDTreeHighlightFile('less', 'LightBlue', 'none', 'LightBlue', '#151515')
 call NERDTreeHighlightFile('css', '77', 'none', '#5fd75f', '#151515')
 call NERDTreeHighlightFile('js', '208', 'none', '#ffd75f', '#151515')
@@ -312,7 +333,7 @@ call NERDTreeHighlightFile('jsx', '33', 'none', '33', '#151515')
 call NERDTreeHighlightFile('coffee', '221', 'none', '#ffd75f', '#151515')
 call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 call NERDTreeHighlightFile('rb', '167', 'none', '#d75f5f', '#151515')
-call NERDTreeHighlightFile('erb', '147', 'none', '#afafff', '#151515')
+" call NERDTreeHighlightFile('erb', '147', 'none', '#afafff', '#151515')
 
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -338,7 +359,7 @@ nmap <Leader>p :r ~/.vbuf<CR>
 autocmd BufWritePre * :%s/\s\+$//e
 
 " au BufRead,BufNewFile {Vagrantfile,Gemfile,Capfile} set ft=ruby
-au BufRead,BufNewFile {.eslintrc,composer.lock} set ft=json
+au BufRead,BufNewFile {.babelrc,composer.lock} set ft=json
 au BufRead,BufNewFile {.bash_aliases,bash_aliases} set ft=sh
 
 " comments types
