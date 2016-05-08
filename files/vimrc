@@ -159,7 +159,7 @@ set t_Co=256
 "   colorscheme jellybeans
 " endif
 
-set background=dark
+" set background=dark
 let g:gruvbox_italic=1
 if !empty(glob("~/.vim/bundle/gruvbox"))
   colorscheme gruvbox
@@ -239,6 +239,7 @@ let b:syntastic_javascript_eslint_exec = substitute(s:eslint_path, '^\n*\s*\(.\{
 " let g:syntastic_jade_checkers = ['jade_lint']
 
 let g:syntastic_ruby_checkers = ['rubocop', 'mri']
+let g:syntastic_ruby_rubocop_args = '--force-exclusion'
 let g:syntastic_haml_checkers = ['haml_lint']
 let g:syntastic_slim_checkers = ['slim_lint']
 
@@ -296,6 +297,7 @@ nmap <Leader>a= :Tabularize /=<CR>
 vmap <Leader>a= :Tabularize /=<CR>
 nmap <Leader>a== :Tabularize /==<CR>
 vmap <Leader>a== :Tabularize /==<CR>
+vmap <Leader> :Tabularize /',\zs.*<CR>
 " endif
 " /Tabularize mappings ----------------------------------
 
@@ -333,7 +335,7 @@ call NERDTreeHighlightFile('jsx', '33', 'none', '33', '#151515')
 call NERDTreeHighlightFile('coffee', '221', 'none', '#ffd75f', '#151515')
 call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 call NERDTreeHighlightFile('rb', '167', 'none', '#d75f5f', '#151515')
-" call NERDTreeHighlightFile('erb', '147', 'none', '#afafff', '#151515')
+call NERDTreeHighlightFile('erb', '147', 'none', '#afafff', '#151515')
 
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -366,9 +368,6 @@ au BufRead,BufNewFile {.bash_aliases,bash_aliases} set ft=sh
 autocmd FileType php setlocal commentstring=#\ %s
 autocmd FileType slim setlocal commentstring=/\ %s
 autocmd FileType pug setlocal commentstring=//-\ %s
-
-" au FileType ruby setl sw=2 sts=2 et
-" au FileType eruby setl sw=2 sts=2 et
 
 if filereadable(expand("~/.vimrc.after"))
   source ~/.vimrc.after
