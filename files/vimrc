@@ -20,7 +20,7 @@ Plugin 'tpope/vim-dispatch'            " Leverage the power of Vim's compiler pl
 
 Plugin 'godlygeek/tabular'             " Text alignment http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
 Plugin 'ervandew/supertab'             " Supertab is a vim plugin which allows you to use <Tab> for all your insert completion needs (:help ins-completion).
-" Plugin 'editorconfig/editorconfig-vim' " :help editorconfig http://editorconfig.org/
+Plugin 'editorconfig/editorconfig-vim' " :help editorconfig http://editorconfig.org/
 " Plugin 'xolox/vim-misc'                " Basically it's an extended standard library of Vim script functions that I wrote during the development of my Vim profile and plug-ins.
 " Plugin 'xolox/vim-easytags'            " Automated tag (ctags) generation and syntax highlighting in Vim
 
@@ -238,8 +238,10 @@ let b:syntastic_javascript_eslint_exec = substitute(s:eslint_path, '^\n*\s*\(.\{
 
 " let g:syntastic_jade_checkers = ['jade_lint']
 
-let g:syntastic_ruby_checkers = ['rubocop', 'mri']
-let g:syntastic_ruby_rubocop_args = '--force-exclusion'
+" let g:syntastic_ruby_checkers = ['rubocop', 'mri']
+" let g:syntastic_ruby_rubocop_args = '--force-exclusion'
+" let g:syntastic_ruby_checkers = ['reek']
+let g:syntastic_ruby_checkers = ['rubylint']
 let g:syntastic_haml_checkers = ['haml_lint']
 let g:syntastic_slim_checkers = ['slim_lint']
 
