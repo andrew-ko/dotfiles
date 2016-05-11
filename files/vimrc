@@ -8,7 +8,6 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'Shougo/vimproc.vim'            " Vimproc is a great asynchronous execution library for Vim.
 Plugin 'scrooloose/syntastic'          " Syntax checking plugin
-Plugin 'editorconfig/editorconfig-vim'
 Plugin 'tpope/vim-sleuth'              " This plugin automatically adjusts 'shiftwidth' and 'expandtab' heuristically based on the current file. In lieu of adjusting 'softtabstop', 'smarttab' is enabled.
 Plugin 'tpope/vim-sensible'            " A universal set of defaults that (hopefully) everyone can agree on.
 Plugin 'tpope/vim-surround'            " Surround.vim is all about 'surroundings': parentheses, brackets, quotes, XML tags, and more.
