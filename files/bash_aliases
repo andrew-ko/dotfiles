@@ -9,3 +9,10 @@ alias ll="ls -alh"
 alias tl="tree -L 1"
 alias d="cd ~"
 alias c="clear"
+
+# Git
+alias gil="git log --oneline --graph --decorate --all"
+alias gis="git status"
+alias gia="git add -A"
+alias gic="git commit"
+alias gicm="git checkout master"
