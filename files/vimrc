@@ -90,7 +90,7 @@ Plugin 'mikehaertl/yii2-apidoc-vim' " Yii 2 API docs for Vim
 " /PHP -------------------------------
 
 " Snippets UltiSnips
-Plugin 'SirVer/ultisnips'     " Track the engine.
+Plugin 'SirVer/ultisnips'
 Plugin 'mattn/emmet-vim'
 " Vim Tmux Navigator
 Plugin 'christoomey/vim-tmux-navigator'
@@ -123,7 +123,6 @@ set lazyredraw
 
 set hidden
 set nofoldenable
-" set synmaxcol=80
 
 "set ttyscroll=10
 "set encoding=utf-8
@@ -139,12 +138,12 @@ set nobackup
 set nowb
 set noswapfile
 
-" set tabstop=4
 set expandtab
 set shiftwidth=2
 set softtabstop=2
 
-set colorcolumn=81
+autocmd FileType php,html,haml,erb,vim set colorcolumn=121
+autocmd FileType ruby,javascript,slim,pug set colorcolumn=81
 
 " get italics in gnome-terminal
 " http://askubuntu.com/questions/492592/can-i-get-italics-in-gnome-terminal
@@ -198,7 +197,7 @@ let g:vim_markdown_folding_disabled = 1
 set omnifunc=syntaxcomplete#Complete
 " ----------------------------------
 
-autocmd FileType ruby compiler rubyunit
+autocmd FileType ruby compiler ruby
 
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
@@ -240,9 +239,13 @@ let b:syntastic_javascript_eslint_exec = substitute(s:eslint_path, '^\n*\s*\(.\{
 " let g:syntastic_ruby_checkers = ['rubocop', 'mri']
 " let g:syntastic_ruby_rubocop_args = '--force-exclusion'
 " let g:syntastic_ruby_checkers = ['reek']
-let g:syntastic_ruby_checkers = ['rubylint']
+let g:syntastic_ruby_checkers = ['mri']
 let g:syntastic_haml_checkers = ['haml_lint']
 let g:syntastic_slim_checkers = ['slim_lint']
+"
+let g:syntastic_scss_sass_args="--load-path /home/andrewko/.rvm/gems/ruby-2.3.1@rails4.2/gems/bootstrap-4.0.0.alpha3"
+
+
 
 let g:syntastic_php_checkers=['php', 'phpcs']
 let g:syntastic_php_phpcs_exec='~/.composer/vendor/bin/phpcs'
@@ -364,6 +367,10 @@ autocmd BufWritePre * :%s/\s\+$//e
 " au BufRead,BufNewFile {Vagrantfile,Gemfile,Capfile} set ft=ruby
 au BufRead,BufNewFile {.babelrc,composer.lock} set ft=json
 au BufRead,BufNewFile {.bash_aliases,bash_aliases} set ft=sh
+
+" spellcheck for commits
+autocmd FileType gitcommit setlocal spell
+autocmd FileType markdown setlocal spell
 
 " comments types
 autocmd FileType php setlocal commentstring=#\ %s
