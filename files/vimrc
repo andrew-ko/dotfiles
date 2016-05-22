@@ -69,9 +69,7 @@ Plugin 'wlangstroth/vim-racket'
 Plugin 'moll/vim-node'
 Plugin 'othree/yajs.vim'
 Plugin 'othree/es.next.syntax.vim'
-Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'mxw/vim-jsx'
-Plugin 'isruslan/vim-es6'
 " Plugin 'pangloss/vim-javascript'
 " Plugin 'facebook/vim-flow'
 " /JS -------------------------------
@@ -175,7 +173,7 @@ let g:phpqa_codesniffer_args = "--standard=PSR2"
 " JavaScript ----------------
 let g:jsx_ext_required = 0
 let g:vim_json_syntax_conceal = 0
-let g:used_javascript_libs = 'underscore,react,flux,jquery,chai'
+" autocmd BufRead,BufNewFile *.es6 setfiletype javascript
 " /JavaScript ---------------
 
 " Persistent Undo -----------
@@ -335,8 +333,9 @@ call NERDTreeHighlightFile('slim', '73', 'none', '73', '#151515')
 call NERDTreeHighlightFile('less', 'LightBlue', 'none', 'LightBlue', '#151515')
 call NERDTreeHighlightFile('css', '77', 'none', '#5fd75f', '#151515')
 call NERDTreeHighlightFile('js', '208', 'none', '#ffd75f', '#151515')
+call NERDTreeHighlightFile('es6', '208', 'none', '#ffd75f', '#151515')
 call NERDTreeHighlightFile('jsx', '33', 'none', '33', '#151515')
-call NERDTreeHighlightFile('coffee', '221', 'none', '#ffd75f', '#151515')
+call NERDTreeHighlightFile('coffee', '31', 'none', '#ffd75f', '#151515')
 call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 call NERDTreeHighlightFile('rb', '167', 'none', '#d75f5f', '#151515')
 call NERDTreeHighlightFile('erb', '147', 'none', '#afafff', '#151515')
