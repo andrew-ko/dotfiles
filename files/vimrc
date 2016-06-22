@@ -16,6 +16,7 @@ Plugin 'tpope/vim-repeat'              " Remaps . in a way that plugins can tap 
 Plugin 'tpope/vim-unimpaired'          " Complementary pairs of mappings
 Plugin 'tpope/vim-endwise'             " This is a simple plugin that helps to end certain structures automatically. (ruby, cpp, objc, lua, vim, ...)
 Plugin 'tpope/vim-dispatch'            " Leverage the power of Vim's compiler plugins without being bound by synchronicity.
+Plugin 'tpope/vim-projectionist'
 
 Plugin 'godlygeek/tabular'             " Text alignment http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
 Plugin 'ervandew/supertab'             " Supertab is a vim plugin which allows you to use <Tab> for all your insert completion needs (:help ins-completion).
@@ -28,14 +29,20 @@ Plugin 'editorconfig/editorconfig-vim' " :help editorconfig http://editorconfig.
 Plugin 'tpope/vim-git'                 " Included are syntax, indent, and filetype plugin files for git, gitcommit, gitconfig, gitrebase, and gitsendemail.
 Plugin 'tpope/vim-fugitive'            " The best Git wrapper of all time
 
-" Colors ----------------------------
+" Snippets UltiSnips
+Plugin 'SirVer/ultisnips'
+Plugin 'mattn/emmet-vim'
+" Vim Tmux Navigator
+Plugin 'christoomey/vim-tmux-navigator'
+
+" Colors
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'nanotech/jellybeans.vim'        " color scheme
 Plugin 'morhetz/gruvbox'                " color scheme
-" /Colors ---------------------------
+"
 
-" Vim navigation, buffers, search ---
+" Vim navigation, buffers, search
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'jeetsukumaran/vim-buffergator' " Use `<Leader>b` to open a window listing all buffers
@@ -43,55 +50,49 @@ Plugin 'ctrlpvim/ctrlp.vim'            " Full path fuzzy file, buffer, mru, tag,
 Plugin 'mbbill/undotree'               " <leader>q :UndotreeToggle (F5 - default)
 Plugin 'mileszs/ack.vim'               " Ack-grep in vim. Ack can be used as a replacement for 99% of the uses of grep.
 Plugin 'majutsushi/tagbar'             " Browse the tags of the current file and get an overview of its structure
-" /Vim navigation -------------------
+"
 
-" Markup, notation, configs ---------
+" Markup, notation, configs
 Plugin 'stephpy/vim-yaml'           " Override vim syntax for yaml files. Yaml files in vim 7.4 are really slow, due to core yaml syntax. This syntax is simpler/faster.
 Plugin 'elzr/vim-json'              " Better JSON for VIM
 Plugin 'plasticboy/vim-markdown'    " Syntax highlighting, matching rules and mappings for the original Markdown and extensions.
 Plugin 'ekalinin/Dockerfile.vim'    " Vim syntax file for Docker's Dockerfile and snippets for snipMate.
-" /Markup, notation -----------------
+"
 
-" HTML, CSS, preproc, template ------
+" HTML, CSS
 Plugin 'othree/html5.vim'           " HTML5 + inline SVG omnicomplete function, indent and syntax for Vim.
 Plugin 'qbbr/vim-twig'              " Twig syntax and snippets.
 Plugin 'digitaltoad/vim-jade'       " Vim syntax highlighting for Jade templates.
 Plugin 'groenewege/vim-less'
 Plugin 'slim-template/vim-slim'
-" /HTML, CSS ------------------------
+"
 
-" Lisp ------------------------------
+" Lisp
 Plugin 'vim-scripts/paredit.vim'    " Paredit performs structured editing of Lisp S-expressions in Vim
 Plugin 'wlangstroth/vim-racket'
-" /Lisp -----------------------------
+"
 
-" JS --------------------------------
+" JS
 Plugin 'moll/vim-node'
-Plugin 'othree/yajs.vim'
-Plugin 'othree/es.next.syntax.vim'
 Plugin 'mxw/vim-jsx'
-" Plugin 'pangloss/vim-javascript'
+" Plugin 'othree/yajs.vim'
+" Plugin 'othree/es.next.syntax.vim'
+Plugin 'pangloss/vim-javascript'
 " Plugin 'facebook/vim-flow'
-" /JS -------------------------------
+"
 
-" Ruby -------------------------------
+" Ruby
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-bundler'
-" /Ruby ------------------------------
+"
 
-" PHP --------------------------------
+" PHP
 Plugin '2072/PHP-Indenting-for-VIm' " This is the official PHP indentation plug-in for VIm
 Plugin 'joonty/vim-phpqa'           " Plugin that integrates PHP quality checking tools
 Plugin 'mikehaertl/yii2-apidoc-vim' " Yii 2 API docs for Vim
 " Plugin 'shawncplus/phpcomplete.vim' " Improved PHP omni-completion. Based on the default phpcomplete.vim. Namespace support ( Requires patched ctags )
-" /PHP -------------------------------
-
-" Snippets UltiSnips
-Plugin 'SirVer/ultisnips'
-Plugin 'mattn/emmet-vim'
-" Vim Tmux Navigator
-Plugin 'christoomey/vim-tmux-navigator'
+"
 
 call vundle#end()
 syntax on
@@ -142,6 +143,7 @@ set softtabstop=2
 
 autocmd FileType php,html,haml,erb,vim set colorcolumn=121
 autocmd FileType ruby,javascript,slim,pug set colorcolumn=81
+autocmd FileType javascript set colorcolumn=101
 
 " get italics in gnome-terminal
 " http://askubuntu.com/questions/492592/can-i-get-italics-in-gnome-terminal
@@ -269,6 +271,11 @@ autocmd FileType php let b:dispatch = 'phpunit %'
 autocmd FileType javascript let b:dispatch = 'node %'
 " /Dispatch ----------------------------------------
 
+" CtrlP --------------------------------------------
+" Ignore files in .gitignore
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+" /CtrlP -------------------------------------------
+
 " Map ctrl-movement keys to window switching
 map <C-k> <C-w><Up>
 map <C-j> <C-w><Down>
@@ -359,6 +366,9 @@ vmap <Leader>y :w! ~/.vbuf<CR>
 nmap <Leader>y :.w! ~/.vbuf<CR>
 "paste the contents of the buffer file
 nmap <Leader>p :r ~/.vbuf<CR>
+
+" Copy selection to clipboard with xsel
+vmap <silent> <Leader>c :w !xsel -b<CR>
 
 " Automatically removing all trailing whitespace
 autocmd BufWritePre * :%s/\s\+$//e

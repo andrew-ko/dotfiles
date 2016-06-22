@@ -1,12 +1,6 @@
-.PHONY: default help dotfiles
+.PHONY: dotfiles
 
 default: help
-
-vim_configure:
-	ansible-playbook book/vim.yml -i local -vv -e curdir=$(CURDIR)
-
-vim_update_plugins:
-	ansible-playbook book/vim.yml -i local -vv --tags 'update'
 
 install_ansible:
 	sudo apt-get install software-properties-common
@@ -15,7 +9,7 @@ install_ansible:
 	sudo apt-get install ansible
 
 dotfiles:
-	ansible-playbook book/dotfiles.yml -i local -vv -e curdir=$(CURDIR)
+	ansible-playbook dotfiles.yml -i local -vv -e curdir=$(CURDIR)
 
 help:
 	@echo 'targets:'
