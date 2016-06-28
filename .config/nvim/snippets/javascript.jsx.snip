@@ -54,3 +54,20 @@ options     word
 snippet     require
 options     word
         require('${0}');
+# ----------------------------------------------------------------
+
+snippet     it
+abbr        it() Mocha func
+options     head
+        it('${1}', () => {
+          ${0}
+        });
+# ----------------------------------------------------------------
+
+snippet     describe
+abbr        describe() Mocha func
+options     head
+        describe('${1}', () => {
+          ${0}
+        });
+# ----------------------------------------------------------------

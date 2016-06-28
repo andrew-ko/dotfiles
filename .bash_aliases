@@ -1,21 +1,13 @@
-# alias tmux="tmux -2"
+# Tmux
 alias tmux="env TERM=screen-256color tmux"
+# alias tmux="tmux -2"
 alias ks-tmux="tmux kill-session"
-alias eighties-theme="~/.config/base16-shell/base16-eighties.dark.sh"
-alias railscasts-theme="~/.config/base16-shell/base16-railscasts.dark.sh"
 
-alias cd-kps="cd ~/localhost/kidspartyset"
-alias cd-php="cd ~/code/PHP"
-alias cd-js="cd ~/code/JS"
-alias cd-ruby="cd ~/code/Ruby"
-alias cd-rails="cd ~/code/rails"
-alias cd-dotfiles="cd ~/inventory/dotfiles"
-alias cd-ba="cd ~/code/battle_asserts"
-
-alias v="vim ."
-alias vv="NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim"
-alias nn="A_BG=1 NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim"
-alias vim="A_BG=1 NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim"
+# Vim
+alias v="NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim"
+alias n="A_BG=1 NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim"
+alias vim="vim ."
+alias nvim-config="NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim ~/.config/nvim/init.vim"
 
 # Git
 alias gil="git log --oneline --graph --decorate --all"
@@ -24,19 +16,28 @@ alias gia="git add -A"
 alias gic="git commit"
 alias gicm="git checkout master"
 
+# Npm
+alias nid="npm install --save-dev"
+alias nis="npm install --save"
+
 # Docker
 alias dps="docker ps"
 alias dpa="docker ps -a"
 
-# navigation
+# Navigation
 alias ..="cd .."
 alias ...="cd ../.."
 alias ll="ls -alh"
 alias tl="tree -L 1"
-alias h="cd ~"
 alias d="cd ~"
 alias c="clear"
+alias cd-php="cd ~/code/PHP"
+alias cd-js="cd ~/code/JS"
+alias cd-ruby="cd ~/code/Ruby"
+alias cd-rails="cd ~/code/rails"
+alias cd-ba="cd ~/code/battle_asserts"
+alias cd-kps="cd ~/localhost/kidspartyset"
 
-# keymaps
-# bind -x '"\C-n": clear'
-alias nvim-config="NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim ~/.config/nvim/init.vim"
+# Color-schemes
+alias eighties-theme="~/.config/base16-shell/base16-eighties.dark.sh"
+alias railscasts-theme="~/.config/base16-shell/base16-railscasts.dark.sh"

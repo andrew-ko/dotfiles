@@ -1,0 +1,47 @@
+---
+- hosts: all
+
+  tasks:
+    - name: ensure python-software-properties is installed
+      apt: pkg=python-software-properties state=installed
+
+  tasks:
+    - apt: name={{ item }} state=latest update_cache=yes
+      become: yes
+      with_items:
+        - vim-nox
+        - tmux
+        - ack-grep
+        - exuberant-ctags
+        - curl
+
+    - file: src={{ curdir }}/files/{{ item }} dest=~/.{{ item }} state=link
+      with_items:
+        - vimrc
+        - bash_aliases
+        - tmux.conf
+
+    - git:
+        repo: 'https://github.com/VundleVim/Vundle.vim.git'
+        dest: ~/.vim/bundle/Vundle.vim
+
+    - file: path=~/.vim/spell state=directory
+
+    - command: vim -i NONE -c PluginUpdate -c quitall
+
+    - command: make chdir=~/.vim/bundle/vimproc.vim/
+
+# Neovim Ubuntu
+# sudo apt-get install software-properties-common $ already installed from ansible installation
+# sudo add-apt-repository ppa:neovim-ppa/unstable
+# sudo apt-get update
+# sudo apt-get install neovim
+# sudo apt-get install python-dev python-pip python3-dev python3-pip
+# sudo pip3 install --upgrade neovim
+#
+# vim-plug for neovim
+# curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+#
+# base16-shell
+# git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
+#

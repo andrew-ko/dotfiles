@@ -1,17 +1,17 @@
 call plug#begin()
 
-" colorschemes
+" Colorschemes
 Plug 'morhetz/gruvbox'
 " Plug 'chriskempson/base16-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-" utilities
+" Utilities
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mbbill/undotree'
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] } | Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'jeetsukumaran/vim-buffergator'
-Plug 'Raimondi/delimitMate' " Automatic closing of quotes, parenthesis, brackets, etc.
+Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-endwise'
@@ -20,16 +20,22 @@ Plug 'tpope/vim-sensible' " A universal set of defaults that (hopefully) everyon
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-dispatch'
-Plug 'benekastah/neomake' " Neovim replacement for syntastic using neovim's job control functonality
+Plug 'benekastah/neomake'
 Plug 'mhinz/vim-startify'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'christoomey/vim-tmux-navigator'
 " Plug 'ervandew/supertab'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-Plug 'christoomey/vim-tmux-navigator'
-
-" language-specific plugins
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
+Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
 Plug 'mattn/emmet-vim'
-Plug 'gregsexton/MatchTag', { 'for': 'html' } " match tags in html, similar to paren support
+
+" Language-specific plugins
+Plug 'gregsexton/MatchTag', { 'for': 'html' }
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'moll/vim-node', { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
@@ -44,12 +50,6 @@ Plug 'itspriddle/vim-marked', { 'for': 'markdown', 'on': 'MarkedOpen' }
 Plug 'tpope/vim-markdown', { 'for': 'markdown' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
-function! DoRemote(arg)
-  UpdateRemotePlugins
-endfunction
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
 
 call plug#end()
 
@@ -71,7 +71,7 @@ set lazyredraw
 set ttyfast " faster redrawing
 set laststatus=2 " show the satus line all the time
 set hidden " current buffer can be put into background
-set nofoldenable " don't fold by default
+set nofoldenable
 set showcmd " show incomplete commands
 set hlsearch
 " set incsearch " set incremental search
@@ -92,8 +92,7 @@ endif
 set diffopt+=vertical
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$' " highlight conflicts
 
-" Colors ----------------------------------------{
-" let a_bg = $A_BG
+" Colors ----------------------------------------
 if $A_BG
   set background=dark
 endif
@@ -102,10 +101,11 @@ colorscheme gruvbox
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 hi! link phpVarSelector Identifier
-" -----------------------------------------------}
+
+" -----------------------------------------------
 
 
-" Plugins settings ------------------------------{
+" Plugins settings ------------------------------
 
 " Neomake
 autocmd! BufWritePost * Neomake
@@ -148,13 +148,11 @@ nnoremap <leader>q :UndotreeToggle<CR>
 " Nerdtree
 nmap <C-\> :NERDTreeFind<CR>
 nmap <silent> <leader><leader> :NERDTreeToggle<cr>
-nmap <silent> // :nohlsearch<CR>
 if filereadable(expand("~/.config/nvim/nerdTreeColors.vim"))
   source ~/.config/nvim/nerdTreeColors.vim
 endif
 
 " Startify
-" let g:startify_commands = [ { 'm': 'NERDTreeToggle' } ]
 let g:startify_commands = [ { ',': 'NERDTreeToggle' } ]
 let g:startify_custom_indices = ['o']
 
@@ -176,12 +174,16 @@ if has('conceal')
 endif
 
 " DelimitMate
-let delimitMate_expand_cr = 2
+let delimitMate_expand_cr = 1
+let delimitMate_jump_expansion = 1
 let delimitMate_expand_space = 1
 
-" -----------------------------------------------}
+" -----------------------------------------------
 
-" Mappings --------------------------------------{
+" Mappings --------------------------------------
+
+" Temporarily disable search matches highlighting
+nmap <silent> // :nohlsearch<CR>
 
 " Map ctrl-movement keys to window switching
 map <C-k> <C-w><Up>
@@ -208,13 +210,22 @@ nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
 " format the entire file
 nnoremap <leader>fef :normal! gg=G``<CR>
 
-" -----------------------------------------------}
+" prepend semicolon
+nmap ; A;<ESC>
 
-" Commands --------------------------------------{
+" -----------------------------------------------
+
+" AutoCommands ----------------------------------
 
 autocmd BufWritePre * :%s/\s\+$//e " Automatically remove all trailing whitespaces
 autocmd FileType gitcommit setlocal spell " spellcheck for commits
 autocmd FileType markdown setlocal spell
 au BufRead,BufNewFile {.babelrc,composer.lock} set ft=json
 
-" -----------------------------------------------}
+" Always jump to the last known cursor position.
+autocmd BufReadPost *
+      \ if line("'\"") > 0 && line("'\"") <= line("$") |
+      \   exe "normal g`\"" |
+      \ endif
+
+" -----------------------------------------------
