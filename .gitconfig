@@ -1,0 +1,16 @@
+[user]
+	email = andrew.kovalenko16@gmail.com
+	name = andrew-ko
+[core]
+	editor = "NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim"
+[alias]
+	st = status
+	last = log -1 HEAD
+	co = checkout
+	br = branch
+	hist = log --oneline --graph
+	l = log --oneline --graph --decorate --all
+[diff]
+	external = /usr/local/bin/git-diff.sh
+[push]
+	default = simple

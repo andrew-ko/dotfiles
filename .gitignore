@@ -1,0 +1,15 @@
+# Ignore
+*
+/.config
+/.config/nvim/
+
+# But not these files
+!.gitignore
+!.gitconfig
+!.tmux.conf
+!.bash_aliases
+!.bash_profile
+!/.config/dotfiles.yml
+!/.config/nvim/init.vim
+!/.config/nvim/nerdTreeColors.vim
+!/.config/nvim/snippets

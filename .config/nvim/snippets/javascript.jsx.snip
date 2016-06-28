@@ -1,0 +1,56 @@
+snippet     ir
+abbr        import React
+options     head
+        import React${1:, { PropTypes, Component \}} from 'react';
+        ${0}
+# ----------------------------------------------------------------
+
+snippet     =>
+abbr        => { $ }
+options     word
+        => {
+          ${0}
+        }
+# ----------------------------------------------------------------
+
+snippet     Rfc
+abbr        React function component
+options     head
+        import React, { PropTypes } from 'react';
+
+        const ${1} = (${2}) => ${0}
+
+        $1.propTypes = {
+        };
+
+        export default $1;
+# ----------------------------------------------------------------
+
+snippet     swr
+abbr        switch in reducer
+options     head
+        switch (action.type) {
+          case ${1}:
+            ${2}
+          case ${3}:
+            ${4}
+          default:
+            ${5:return state;}
+        }
+# ----------------------------------------------------------------
+
+snippet     setTimeout-function
+options     head
+        setTimeout(() => {
+          ${0}
+        }, ${1:1000})
+# ----------------------------------------------------------------
+
+snippet     Object-assign
+options     word
+        Object.assign({}, ${1}, ${2});
+# ----------------------------------------------------------------
+
+snippet     require
+options     word
+        require('${0}');
