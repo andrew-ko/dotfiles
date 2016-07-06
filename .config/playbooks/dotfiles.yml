@@ -28,8 +28,8 @@
           dest: ~/.config/nvim/autoload/plug.vim
           thirsty: yes
 
-      - name: Install vim plugins
-        command: nvim -c PlugInstall -c quitall
+      # - name: Install vim plugins
+      #   command: nvim -c PlugInstall -c quitall
 
       - name: Grab base16-shell scripts
         git:
