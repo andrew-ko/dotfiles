@@ -96,8 +96,10 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$' " highlight conflicts
 if $A_BG
   set background=dark
 endif
-let g:gruvbox_italic=1
-colorscheme gruvbox
+if !empty(glob("~/.config/nvim/plugged/gruvbox"))
+  let g:gruvbox_italic=1
+  colorscheme gruvbox
+endif
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 hi! link phpVarSelector Identifier
