@@ -1,5 +1,6 @@
 ---
 - hosts: localhost
+  connection: local
 
   tasks:
     - block:
@@ -15,8 +16,8 @@
       become: true
 
     - block:
-      - name: Move dotfiles to $HOME
-        command: mv ~/dotfiles/.[!.]* ~/
+      - name: Copy dotfiles to $HOME
+        local_action: synchronize src=~/dotfiles/ dest=~/
 
       - name: Create directory for plug.vim
         file: path=~/.config/nvim/autoload state=directory

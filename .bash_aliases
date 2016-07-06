@@ -6,7 +6,6 @@ alias ks-tmux="tmux kill-session"
 # Vim
 alias v="NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim"
 alias n="A_BG=1 NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim"
-alias vim="vim ."
 alias nvim-config="NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim ~/.config/nvim/init.vim"
 
 # Git
@@ -39,5 +38,7 @@ alias cd-ba="cd ~/code/battle_asserts"
 alias cd-kps="cd ~/localhost/kidspartyset"
 
 # Color-schemes
-alias eighties-theme="~/.config/base16-shell/base16-eighties.dark.sh"
-alias railscasts-theme="~/.config/base16-shell/base16-railscasts.dark.sh"
+alias eighties-theme="~/.config/base16-shell/scripts/base16-eighties.sh"
+alias plateau-theme="~/.config/base16-shell/scripts/base16-atelier-plateau.sh"
+alias lakeside-theme="~/.config/base16-shell/scripts/base16-atelier-lakeside.sh"
+alias savanna-theme="~/.config/base16-shell/scripts/base16-atelier-savanna.sh"

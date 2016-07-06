@@ -15,7 +15,7 @@ PATH="$GEM_HOME/bin:$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
 
 export PATH="$PATH:$HOME/.composer/vendor/bin" # Add composer bin to PATH
 
-source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
+source "$HOME/.config/nvim/plugged/gruvbox/gruvbox_256palette.sh"
 
 # base16 shell
 # export THEME="base16-atelierlakeside"
@@ -24,5 +24,5 @@ source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
 # export THEME="base16-default"
 # export BACKGROUND="dark"
 
-# BASE16_SHELL="$HOME/.config/base16-shell/$THEME.$BACKGROUND.sh"
+# BASE16_SHELL="$HOME/.config/base16-shell/scripts/$THEME.$BACKGROUND.sh"
 # [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
