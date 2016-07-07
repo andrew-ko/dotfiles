@@ -9,7 +9,7 @@ Plug 'vim-airline/vim-airline-themes'
 " Utilities
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mbbill/undotree'
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+Plug 'scrooloose/nerdtree' | Plug 'jistr/vim-nerdtree-tabs'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-commentary'
@@ -54,9 +54,7 @@ Plug 'tpope/vim-rails', { 'for': 'ruby' }
 call plug#end()
 
 
-set nocompatible
 set autoread " detect when a file is changed
-set backspace=indent,eol,start
 set history=500
 set textwidth=100
 set expandtab
@@ -68,13 +66,10 @@ set noswapfile
 set visualbell
 set wildmenu
 set lazyredraw
-set ttyfast " faster redrawing
-set laststatus=2 " show the satus line all the time
 set hidden " current buffer can be put into background
 set nofoldenable
 set showcmd " show incomplete commands
 set hlsearch
-" set incsearch " set incremental search
 set ignorecase
 set smartcase
 set number
