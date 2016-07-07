@@ -28,7 +28,7 @@ install_ansible:			##@base Install ansible from apt-get
 	sudo apt-get install ansible
 
 dotfiles:				##@ansible Run ansible-playbook for setup dotfiles
-	ansible-playbook playbooks/dotfiles.yml -vv
+	ansible-playbook playbooks/dotfiles.yml -vv --ask-become-pass
 
 
 postgres:		         	##@ansible Setup PostgreSQL with db and user
