@@ -1,6 +1,8 @@
 ---
 - hosts: localhost
   connection: local
+  vars:
+    base16_dest: '~/.config/base16-shell'
 
   tasks:
     - block:
@@ -16,6 +18,12 @@
       - name: Grab base16-shell scripts
         git:
           repo: 'https://github.com/chriskempson/base16-shell.git'
-          dest: ~/.config/base16-shell
+          dest: "{{ base16_dest }}"
           force: yes
+
+      - name: Set permissions for base16-shell scripts
+        file:
+          path: "{{ item }}"
+          mode: 0774
+        with_fileglob: "{{ base16_dest }}/scripts/*"
       become: false
