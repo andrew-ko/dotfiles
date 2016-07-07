@@ -204,11 +204,14 @@ nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
 
-" format the entire file
+" Format the entire file
 nnoremap <leader>fef :normal! gg=G``<CR>
 
-" prepend semicolon
+" Prepend semicolon
 nmap ; A;<ESC>
+
+" Past mode toggle
+set pastetoggle=<F2>
 
 " -----------------------------------------------
 
