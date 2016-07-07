@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  connection: local
+
+- include: setup_nvim.yml
+- include: setup_packages.yml
+- include: link_files.yml

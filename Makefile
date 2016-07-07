@@ -28,11 +28,14 @@ install_ansible:			##@base Install ansible from apt-get
 	sudo apt-get install ansible
 
 dotfiles:				##@ansible Run ansible-playbook for setup dotfiles
-	ansible-playbook .config/playbooks/dotfiles.yml -vv
+	ansible-playbook playbooks/dotfiles.yml -vv
 
 
-postgres:				##@ansible Install PostgreSQL with db and user
-	ansible-playbook .config/playbooks/postgresql.yml -vv
+postgres:		         	##@ansible Setup PostgreSQL with db and user
+	ansible-playbook playbooks/setup_postgres.yml -vv
+
+nvim:					##@ansible Setup Neovim
+	ansible-playbook playbooks/setup_nvim.yml -vv
 
 
-.PHONY: default help postgres dotfiles
+.PHONY: default help postgres dotfiles nvim

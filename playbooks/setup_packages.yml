@@ -1,0 +1,20 @@
+---
+- hosts: localhost
+  connection: local
+
+  tasks:
+    - block:
+      - apt: name={{ item }} state=latest update_cache=yes
+        with_items:
+          - tmux
+          - ack-grep
+          - curl
+          - exuberant-ctags
+      become: true
+
+    - block:
+      - name: Grab base16-shell scripts
+        git:
+          repo: 'https://github.com/chriskempson/base16-shell.git'
+          dest: ~/.config/base16-shell
+      become: false

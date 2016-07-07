@@ -1,0 +1,42 @@
+---
+- hosts: localhost
+  connection: local
+
+  tasks:
+    - block:
+      - name: Apt add neovim-ppa repo
+        apt_repository: repo='ppa:neovim-ppa/unstable'
+
+      - name: Install neovim and dependencies
+        apt: name={{ item }} state=latest update_cache=yes
+        with_items:
+          - python-dev
+          - python-pip
+          - python3-dev
+          - python3-pip
+          - neovim
+
+      - name: Install neovim-python module
+        pip: name=neovim state=latest executable=pip3
+      become: true
+
+    - block:
+      - name: Create directory for plug.vim
+        file: path=~/.config/nvim/autoload state=directory
+
+      - name: Grab plug.vim source and write to file
+        get_url:
+          url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+          dest: ~/.config/nvim/autoload/plug.vim
+          thirsty: yes
+
+      - name: Link nvim config files
+        file: src=~/dotfiles/files/nvim/{{ item }}
+              dest=~/.config/nvim/{{ item }}
+              state=link
+              force=yes
+        with_items:
+          - init.vim
+          - nerdTreeColors.vim
+          - snippets
+      become: false
