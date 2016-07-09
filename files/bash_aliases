@@ -30,15 +30,10 @@ alias ll="ls -alh"
 alias tl="tree -L 1"
 alias d="cd ~"
 alias c="clear"
-alias cd-php="cd ~/code/PHP"
-alias cd-js="cd ~/code/JS"
-alias cd-ruby="cd ~/code/Ruby"
-alias cd-rails="cd ~/code/rails"
-alias cd-ba="cd ~/code/battle_asserts"
-alias cd-kps="cd ~/localhost/kidspartyset"
 
 # Color-schemes
 alias eighties-theme="~/.config/base16-shell/scripts/base16-eighties.sh"
-alias plateau-theme="~/.config/base16-shell/scripts/base16-atelier-plateau.sh"
-alias lakeside-theme="~/.config/base16-shell/scripts/base16-atelier-lakeside.sh"
 alias savanna-theme="~/.config/base16-shell/scripts/base16-atelier-savanna.sh"
+
+# Load local aliases
+[[ -s "$HOME/.local_aliases" ]] && source "$HOME/.local_aliases"

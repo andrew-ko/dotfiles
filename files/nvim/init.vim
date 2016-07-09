@@ -46,14 +46,11 @@ Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 Plug 'ap/vim-css-color', { 'for': ['css','stylus','scss'] }
 Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
-Plug 'itspriddle/vim-marked', { 'for': 'markdown', 'on': 'MarkedOpen' }
 Plug 'tpope/vim-markdown', { 'for': 'markdown' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
-Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
 Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
-Plug 'kien/rainbow_parentheses.vim', { 'for': 'clojure' }
 
 call plug#end()
 
@@ -178,6 +175,7 @@ endif
 let delimitMate_expand_cr = 1
 let delimitMate_jump_expansion = 1
 let delimitMate_expand_space = 1
+au FileType clojure let b:delimitMate_quotes = "\" "
 
 " -----------------------------------------------
 
