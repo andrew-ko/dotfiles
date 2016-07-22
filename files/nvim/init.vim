@@ -41,6 +41,7 @@ Plug 'tpope/vim-markdown', { 'for': 'markdown' }
 Plug 'moll/vim-node', { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx', { 'for': ['javascript', 'jsx'] }
+Plug 'facebook/vim-flow', { 'for': ['javascript', 'jsx'] }
 Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'digitaltoad/vim-jade', { 'for': ['jade', 'pug'] }
 Plug 'groenewege/vim-less', { 'for': 'less' }
@@ -124,8 +125,12 @@ let g:user_emmet_leader_key='<C-q>'
 " Json
 let g:vim_json_syntax_conceal = 0
 
-" JavaScript
+" Jsx
 let g:jsx_ext_required = 0
+
+" Flow
+let g:flow#autoclose = 1
+nmap <leader>f :FlowType<CR>
 
 " Buffergator
 let g:buffergator_viewport_split_policy = "B"
