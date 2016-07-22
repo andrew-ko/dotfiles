@@ -37,6 +37,7 @@ Plug 'mattn/emmet-vim'
 " Language-specific plugins
 Plug 'gregsexton/MatchTag', { 'for': 'html' }
 Plug 'othree/html5.vim', { 'for': 'html' }
+Plug 'tpope/vim-markdown', { 'for': 'markdown' }
 Plug 'moll/vim-node', { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx', { 'for': ['javascript', 'jsx'] }
@@ -45,8 +46,7 @@ Plug 'digitaltoad/vim-jade', { 'for': ['jade', 'pug'] }
 Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 Plug 'ap/vim-css-color', { 'for': ['css','stylus','scss'] }
-Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
-Plug 'tpope/vim-markdown', { 'for': 'markdown' }
+Plug 'wavded/vim-stylus', { 'for': 'stylus' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
