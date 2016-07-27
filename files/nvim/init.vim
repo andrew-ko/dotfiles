@@ -16,7 +16,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-sensible' " A universal set of defaults that (hopefully) everyone can agree on.
+Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-dispatch'
@@ -52,6 +52,7 @@ Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
 Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 
 call plug#end()
 
@@ -131,6 +132,9 @@ let g:jsx_ext_required = 0
 " Flow
 let g:flow#autoclose = 1
 nmap <leader>f :FlowType<CR>
+
+" Fireplace
+au BufRead,BufNewFile {*.clj} nmap <leader>e :%Eval<CR>
 
 " Buffergator
 let g:buffergator_viewport_split_policy = "B"
@@ -225,8 +229,7 @@ set pastetoggle=<F2>
 " AutoCommands ----------------------------------
 
 autocmd BufWritePre * :%s/\s\+$//e " Automatically remove all trailing whitespaces
-autocmd FileType gitcommit setlocal spell " spellcheck for commits
-autocmd FileType markdown setlocal spell
+autocmd FileType gitcommit,markdown setlocal spell " spellcheck for commits
 au BufRead,BufNewFile {.babelrc,composer.lock} set ft=json
 
 " Always jump to the last known cursor position.
