@@ -20,7 +20,6 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-dispatch'
-Plug 'benekastah/neomake'
 Plug 'mhinz/vim-startify'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'christoomey/vim-tmux-navigator'
@@ -33,6 +32,8 @@ Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'mattn/emmet-vim'
+Plug 'benekastah/neomake'
+Plug 'benjie/neomake-local-eslint.vim'
 
 " Language-specific plugins
 Plug 'gregsexton/MatchTag', { 'for': 'html' }
@@ -88,7 +89,7 @@ if has('mouse')
 endif
 
 set diffopt+=vertical
-match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$' " highlight conflicts
+" match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$' " highlight conflicts
 
 " Colors ----------------------------------------
 if $A_BG
@@ -108,14 +109,12 @@ hi! link phpVarSelector Identifier
 " Plugins settings ------------------------------
 
 " Neomake
+
 autocmd! BufWritePost * Neomake
+" let g:neomake_verbose = 3
 
 let g:neomake_javascript_enabled_makers = ['eslint']
-let s:eslint_path = system('PATH=$(npm bin):$PATH && which eslint')
-let g:neomake_javascript_eslint_exe = substitute(s:eslint_path, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
-
 " let g:neomake_ruby_enabled_makers = ['mri']
-
 let g:neomake_php_enabled_makers = ['phpcs']
 let g:neomake_php_phpcs_args_standard = 'PSR2'
 
@@ -218,8 +217,11 @@ nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
 " Format the entire file
 nnoremap <leader>fef :normal! gg=G``<CR>
 
-" Prepend semicolon
+" Append semicolon
 nmap ; A;<ESC>
+
+" Prepend $ to word
+nmap <leader>4 bi$<ESC>
 
 " Past mode toggle
 set pastetoggle=<F2>
