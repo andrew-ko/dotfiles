@@ -233,6 +233,10 @@ set pastetoggle=<F2>
 autocmd BufWritePre * :%s/\s\+$//e " Automatically remove all trailing whitespaces
 autocmd FileType gitcommit,markdown setlocal spell " spellcheck for commits
 au BufRead,BufNewFile {.babelrc,composer.lock} set ft=json
+au BufRead,BufNewFile {*.xml.dist} set ft=xml
+au BufRead,BufNewFile {.codeclimate} set ft=yaml
+
+autocmd FileType php setlocal commentstring=#\ %s
 
 " Always jump to the last known cursor position.
 autocmd BufReadPost *

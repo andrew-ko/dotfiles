@@ -4,7 +4,6 @@ function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
   exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
 endfunction
 
-call NERDTreeHighlightFile('lock', 'Black', 'none', 'grey', '#151515')
 call NERDTreeHighlightFile('yml', '141', 'none', '#af87ff', '#151515')
 call NERDTreeHighlightFile('html', '73', 'none', '#5fd75f', '#151515')
 call NERDTreeHighlightFile('haml', '73', 'none', '#5fd75f', '#151515')
