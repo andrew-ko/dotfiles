@@ -31,11 +31,15 @@ abbr        switch in reducer
 options     head
         switch (action.type) {
           case ${1}:
-            ${2}
+            return {
+              ${2}
+            };
           case ${3}:
-            ${4}
+            return {
+              ${4}
+            };
           default:
-            ${5:return state;}
+            return state;
         }
 # ----------------------------------------------------------------
 

@@ -39,10 +39,10 @@ Plug 'benjie/neomake-local-eslint.vim'
 Plug 'gregsexton/MatchTag', { 'for': 'html' }
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'tpope/vim-markdown', { 'for': 'markdown' }
-Plug 'moll/vim-node', { 'for': 'javascript' }
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'mxw/vim-jsx', { 'for': ['javascript', 'jsx'] }
-Plug 'facebook/vim-flow', { 'for': ['javascript', 'jsx'] }
+Plug 'moll/vim-node', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'facebook/vim-flow', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'digitaltoad/vim-jade', { 'for': ['jade', 'pug'] }
 Plug 'groenewege/vim-less', { 'for': 'less' }
@@ -114,6 +114,7 @@ autocmd! BufWritePost * Neomake
 " let g:neomake_verbose = 3
 
 let g:neomake_javascript_enabled_makers = ['eslint']
+
 " let g:neomake_ruby_enabled_makers = ['mri']
 let g:neomake_php_enabled_makers = ['phpcs']
 let g:neomake_php_phpcs_args_standard = 'PSR2'
@@ -234,7 +235,7 @@ autocmd BufWritePre * :%s/\s\+$//e " Automatically remove all trailing whitespac
 autocmd FileType gitcommit,markdown setlocal spell " spellcheck for commits
 au BufRead,BufNewFile {.babelrc,composer.lock} set ft=json
 au BufRead,BufNewFile {*.xml.dist} set ft=xml
-au BufRead,BufNewFile {.codeclimate} set ft=yaml
+au BufRead,BufNewFile {.codeclimate,.bootstraprc} set ft=yaml
 
 autocmd FileType php setlocal commentstring=#\ %s
 
