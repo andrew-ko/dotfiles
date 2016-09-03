@@ -92,9 +92,12 @@ set diffopt+=vertical
 " match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$' " highlight conflicts
 
 " Colors ----------------------------------------
-if $A_BG
+set termguicolors
+
+if $DARK_BG
   set background=dark
 endif
+
 if !empty(glob("~/.config/nvim/plugged/gruvbox"))
   let g:gruvbox_italic=1
   colorscheme gruvbox

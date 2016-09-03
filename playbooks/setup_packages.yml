@@ -8,11 +8,10 @@
     - block:
       - apt: name={{ item }} state=latest update_cache=yes
         with_items:
-          - tmux
+#          - tmux
           - ack-grep
           - curl
           - exuberant-ctags
-          - default-jdk
       become: true
 
     - block:
@@ -30,14 +29,4 @@
 
       - name: Ensure bin directory exists in $HOME
         file: dest=~/bin state=directory
-
-      - name: Download lein script
-        get_url:
-          url: https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
-          dest: ~/bin
-          mode: 0774
-          thirsty: yes
-
-      - name: Run (lein) to self-install
-        command: lein
       become: false
