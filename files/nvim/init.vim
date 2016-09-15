@@ -54,6 +54,7 @@ Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
 Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 
 call plug#end()
 
@@ -239,6 +240,7 @@ autocmd FileType gitcommit,markdown setlocal spell " spellcheck for commits
 au BufRead,BufNewFile {.babelrc,composer.lock} set ft=json
 au BufRead,BufNewFile {*.xml.dist} set ft=xml
 au BufRead,BufNewFile {.codeclimate,.bootstraprc} set ft=yaml
+au BufRead,BufNewFile {*.es6} set ft=javascript
 
 autocmd FileType php setlocal commentstring=#\ %s
 

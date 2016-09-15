@@ -5,9 +5,10 @@ alias t="tmux"
 alias ks-tmux="tmux kill-session"
 
 # Vim
-alias v="nvim"
+# alias v="nvim"
+alias v="DARK_BG=1 nvim"
 alias n="DARK_BG=1 nvim"
-alias nvim-config="nvim ~/.config/nvim/init.vim"
+alias nvim-config="v ~/.config/nvim/init.vim"
 
 # Git
 alias gil="git log --oneline --graph --decorate --all"

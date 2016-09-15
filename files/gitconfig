@@ -11,6 +11,8 @@
 	hist = log --oneline --graph
 	l = log --oneline --graph --decorate --all
 [diff]
-	external = /usr/local/bin/git-diff.sh
+	tool = meld
+[merge]
+	tool = meld
 [push]
 	default = simple
