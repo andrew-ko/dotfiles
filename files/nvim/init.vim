@@ -2,7 +2,6 @@ call plug#begin()
 
 " Colorschemes
 Plug 'morhetz/gruvbox'
-" Plug 'chriskempson/base16-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -25,10 +24,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'christoomey/vim-tmux-navigator'
 " Plug 'ervandew/supertab'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-function! DoRemote(arg)
-  UpdateRemotePlugins
-endfunction
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'mattn/emmet-vim'
@@ -103,6 +99,7 @@ if !empty(glob("~/.config/nvim/plugged/gruvbox"))
   let g:gruvbox_italic=1
   colorscheme gruvbox
 endif
+
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 hi! link phpVarSelector Identifier
@@ -225,9 +222,6 @@ nnoremap <leader>fef :normal! gg=G``<CR>
 " Append semicolon
 nmap ; A;<ESC>
 
-" Prepend $ to word
-nmap <leader>4 bi$<ESC>
-
 " Past mode toggle
 set pastetoggle=<F2>
 
@@ -236,11 +230,12 @@ set pastetoggle=<F2>
 " AutoCommands ----------------------------------
 
 autocmd BufWritePre * :%s/\s\+$//e " Automatically remove all trailing whitespaces
-autocmd FileType gitcommit,markdown setlocal spell " spellcheck for commits
+autocmd FileType gitcommit,markdown setlocal spell
 au BufRead,BufNewFile {.babelrc,composer.lock} set ft=json
 au BufRead,BufNewFile {*.xml.dist} set ft=xml
 au BufRead,BufNewFile {.codeclimate,.bootstraprc} set ft=yaml
 au BufRead,BufNewFile {*.es6} set ft=javascript
+au BufRead,BufNewFile {.gitignore} set ft=conf
 
 autocmd FileType php setlocal commentstring=#\ %s
 

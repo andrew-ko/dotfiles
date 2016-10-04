@@ -5,8 +5,7 @@ alias t="tmux"
 alias ks-tmux="tmux kill-session"
 
 # Vim
-# alias v="nvim"
-alias v="DARK_BG=1 nvim"
+alias v="nvim"
 alias n="DARK_BG=1 nvim"
 alias nvim-config="v ~/.config/nvim/init.vim"
 
@@ -16,6 +15,7 @@ alias gis="git status"
 alias gia="git add -A"
 alias gic="git commit"
 alias gicm="git checkout master"
+alias giff="git difftool"
 
 # Npm
 alias nid="npm install --save-dev"
