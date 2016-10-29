@@ -51,6 +51,7 @@ Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
 Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
+Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.handlebars' }
 
 call plug#end()
 
@@ -59,6 +60,7 @@ set autoread " detect when a file is changed
 set history=500
 set textwidth=100
 set expandtab
+set tabstop=4
 set shiftwidth=2 " number of spaces to use for indent and unindent
 set softtabstop=2
 set nobackup
@@ -75,6 +77,7 @@ set ignorecase
 set smartcase
 set number
 set nowrap
+set clipboard+=unnamedplus
 
 syntax on
 
@@ -115,6 +118,7 @@ autocmd! BufWritePost * Neomake
 " let g:neomake_verbose = 3
 
 let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_css_enabled_makers = ['stylelint']
 
 " let g:neomake_ruby_enabled_makers = ['mri']
 let g:neomake_php_enabled_makers = ['phpcs']

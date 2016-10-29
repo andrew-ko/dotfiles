@@ -21,6 +21,15 @@ alias giff="git difftool"
 alias nid="npm install --save-dev"
 alias nis="npm install --save"
 
+# Yarn
+alias ya="yarn add"
+alias yad="yarn add --dev"
+alias yarm="yarn remove"
+
+# React Native development
+alias dmenu="adb shell input keyevent 82"
+alias rn="react-native"
+
 # Docker
 alias dps="docker ps"
 alias dpa="docker ps -a"

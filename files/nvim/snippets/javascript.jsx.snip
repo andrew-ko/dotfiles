@@ -5,36 +5,12 @@ options     head
         ${0}
 # ----------------------------------------------------------------
 
-snippet     P
-abbr        { PropTypes }
-options     word
-        { PropTypes }${0}
-# ----------------------------------------------------------------
-
 snippet     =>
 abbr        => { $ }
 options     word
         => {
           ${0}
         }
-# ----------------------------------------------------------------
-
-snippet     Rf
-abbr        React function component
-options     head
-        import React, { PropTypes } from 'react'
-
-        function ${1}(${2}) {
-          return (
-            ${4}
-          )
-        }
-
-        $1.propTypes = {
-          ${3}
-        }
-
-        export default $1
 # ----------------------------------------------------------------
 
 snippet     ptfr
@@ -139,11 +115,6 @@ options     head
         }, ${1:1000})
 # ----------------------------------------------------------------
 
-snippet     Object-assign
-options     word
-        Object.assign({}, ${1}, ${2})
-# ----------------------------------------------------------------
-
 snippet     require
 options     word
         require('${0}')
@@ -190,14 +161,8 @@ options     head
         }
 # ----------------------------------------------------------------
 
-snippet     imc
-abbr        import { connect }
-options     head
-        import { connect } from 'react-redux'
-# ----------------------------------------------------------------
-
 snippet     s
-abbr        import s from './styles.scss'
+abbr        import s from './styles.css'
 options     head
-        import s from './styles.scss'
+        import s from './styles.css'
 # ----------------------------------------------------------------
