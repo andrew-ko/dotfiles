@@ -90,14 +90,13 @@ if has('mouse')
 endif
 
 set diffopt+=vertical
-" match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$' " highlight conflicts
 
 " Colors ----------------------------------------
 set termguicolors
 
-if $DARK_BG
+" if $DARK_BG
   set background=dark
-endif
+" endif
 
 if !empty(glob("~/.config/nvim/plugged/gruvbox"))
   let g:gruvbox_italic=1
@@ -229,6 +228,11 @@ nmap ; A;<ESC>
 
 " Past mode toggle
 set pastetoggle=<F2>
+
+" Fugitive
+nmap <leader>df :Gdiff<ESC>
+nmap <leader>st :Gstatus<ESC>
+
 
 " -----------------------------------------------
 
