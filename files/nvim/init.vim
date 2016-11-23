@@ -44,7 +44,8 @@ Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'digitaltoad/vim-jade', { 'for': ['jade', 'pug'] }
 Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
-Plug 'ap/vim-css-color', { 'for': ['css','stylus','scss'] }
+Plug 'ap/vim-css-color', { 'for': ['css','less','stylus','scss'] }
+Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'less'] }
 Plug 'wavded/vim-stylus', { 'for': 'stylus' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
@@ -94,12 +95,14 @@ set diffopt+=vertical
 " Colors ----------------------------------------
 set termguicolors
 
-" if $DARK_BG
+if $DARK_BG
   set background=dark
-" endif
+endif
 
 if !empty(glob("~/.config/nvim/plugged/gruvbox"))
   let g:gruvbox_italic=1
+  let g:gruvbox_hls_cursor='faded_aqua'
+  let g:gruvbox_italicize_strings=1
   colorscheme gruvbox
 endif
 
@@ -190,6 +193,9 @@ let delimitMate_expand_cr = 1
 let delimitMate_jump_expansion = 1
 let delimitMate_expand_space = 1
 au FileType clojure let b:delimitMate_quotes = "\" "
+
+" Editorconfig
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 " -----------------------------------------------
 

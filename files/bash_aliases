@@ -25,6 +25,7 @@ alias nis="npm install --save"
 alias ya="yarn add"
 alias yad="yarn add --dev"
 alias yarm="yarn remove"
+alias yaui="yarn upgrade-interactive"
 
 # React Native development
 alias dmenu="adb shell input keyevent 82"
