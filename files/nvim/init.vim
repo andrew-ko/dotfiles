@@ -32,6 +32,7 @@ Plug 'benekastah/neomake'
 Plug 'benjie/neomake-local-eslint.vim'
 Plug 'majutsushi/tagbar'
 Plug 'mileszs/ack.vim'
+Plug 'junegunn/vim-easy-align'
 
 " Language-specific plugins
 Plug 'gregsexton/MatchTag', { 'for': 'html' }
@@ -203,6 +204,17 @@ au FileType clojure let b:delimitMate_quotes = "\" "
 " Editorconfig
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
+" Easy-align
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+
+" Fugitive
+nmap <leader>df :Gdiff<ESC>
+nmap <leader>st :Gstatus<ESC>
+
+" Tagbar
+nmap <leader>a :TagbarToggle<CR>
+
 " -----------------------------------------------
 
 " Mappings --------------------------------------
@@ -241,12 +253,9 @@ nmap ; A;<ESC>
 " Past mode toggle
 set pastetoggle=<F2>
 
-" Fugitive
-nmap <leader>df :Gdiff<ESC>
-nmap <leader>st :Gstatus<ESC>
-
-" Tagbar
-nmap <leader>a :TagbarToggle<CR>
+" Substitute require with import
+" paragraph
+nmap <leader>sr vip:s/\%Vvar/import<CR>vip:s/\%V= require(/from /g<CR>vip:s/\%V)//g<CR>
 
 " -----------------------------------------------
 
