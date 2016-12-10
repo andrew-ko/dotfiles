@@ -31,11 +31,8 @@ dotfiles:				##@ansible Run ansible-playbook for setup dotfiles
 	ansible-playbook playbooks/dotfiles.yml -vv --ask-become-pass
 
 
-postgres:		         	##@ansible Setup PostgreSQL with db and user
-	ansible-playbook playbooks/setup_postgres.yml -vv
-
 nvim:					##@ansible Setup Neovim
 	ansible-playbook playbooks/setup_nvim.yml -vv
 
 
-.PHONY: default help postgres dotfiles nvim
+.PHONY: default help dotfiles nvim
