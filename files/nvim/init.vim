@@ -23,7 +23,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-startify'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'christoomey/vim-tmux-navigator'
-" Plug 'ervandew/supertab'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neosnippet'
@@ -31,6 +30,8 @@ Plug 'Shougo/neosnippet-snippets'
 Plug 'mattn/emmet-vim'
 Plug 'benekastah/neomake'
 Plug 'benjie/neomake-local-eslint.vim'
+Plug 'majutsushi/tagbar'
+Plug 'mileszs/ack.vim'
 
 " Language-specific plugins
 Plug 'gregsexton/MatchTag', { 'for': 'html' }
@@ -54,6 +55,7 @@ Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.handlebars' }
+Plug 'jwalton512/vim-blade', { 'for': ['blade.php', 'php', 'blade'] }
 
 call plug#end()
 
@@ -80,6 +82,8 @@ set smartcase
 set number
 set nowrap
 set clipboard+=unnamedplus
+" set autoindent
+" set smartindent
 
 syntax on
 
@@ -122,11 +126,10 @@ autocmd! BufWritePost * Neomake
 
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_css_enabled_makers = ['stylelint']
-
-" let g:neomake_ruby_enabled_makers = ['mri']
-let g:neomake_php_enabled_makers = ['phpcs']
 let g:neomake_php_phpcs_args_standard = 'PSR2'
-
+let g:neomake_error_sign = {'text': '✖', 'texthl': 'GruvboxBlueSign'}
+let g:neomake_highlight_columns = 0
+let g:neomake_highlight_lines = 0
 
 " Emmet
 let g:user_emmet_leader_key='<C-q>'
@@ -136,6 +139,9 @@ let g:vim_json_syntax_conceal = 0
 
 " Jsx
 let g:jsx_ext_required = 0
+
+" Vim-javascript
+let g:javascript_plugin_jsdoc = 1
 
 " Flow
 let g:flow#autoclose = 1
@@ -239,6 +245,8 @@ set pastetoggle=<F2>
 nmap <leader>df :Gdiff<ESC>
 nmap <leader>st :Gstatus<ESC>
 
+" Tagbar
+nmap <leader>a :TagbarToggle<CR>
 
 " -----------------------------------------------
 
