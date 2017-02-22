@@ -1,6 +1,4 @@
 # Tmux
-# alias tmux="env TERM=screen-256color tmux"
-# alias tmux="tmux -2"
 alias t="tmux"
 alias ks-tmux="tmux kill-session"
 
@@ -16,10 +14,6 @@ alias gia="git add -A"
 alias gic="git commit"
 alias gicm="git checkout master"
 alias giff="git difftool"
-
-# Npm
-alias nid="npm install --save-dev"
-alias nis="npm install --save"
 
 # Yarn
 alias ya="yarn add"
@@ -44,10 +38,6 @@ alias la="ls -A"
 alias tl="tree -L 1"
 alias d="cd ~"
 alias c="clear"
-
-# Color-schemes
-# alias eighties-theme="~/.config/base16-shell/scripts/base16-eighties.sh"
-# alias savanna-theme="~/.config/base16-shell/scripts/base16-atelier-savanna.sh"
 
 # Load local aliases
 [[ -s "$HOME/.local_aliases" ]] && source "$HOME/.local_aliases"

@@ -280,6 +280,6 @@ autocmd BufReadPost *
       \ endif
 
 
-" -----------------------------------------------
+"
 autocmd FileType ruby compiler ruby
 
