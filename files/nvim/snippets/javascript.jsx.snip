@@ -20,6 +20,12 @@ options     word
         }
 # ----------------------------------------------------------------
 
+snippet     pter
+abbr        PropTypes.element.isRequired,
+options     word
+        PropTypes.element.isRequired,
+# ----------------------------------------------------------------
+
 snippet     ptfr
 abbr        PropTypes.func.isRequired,
 options     word
@@ -178,4 +184,30 @@ snippet     d
 abbr        debugger
 options     word
         debugger
+# ----------------------------------------------------------------
+
+snippet     *
+abbr        function Generator
+options     head
+       function* ${1}(${2}) {
+         ${0:TARGET}
+       }
+# ----------------------------------------------------------------
+
+snippet     flow
+abbr        flow
+options     head
+       /* @flow */
+# ----------------------------------------------------------------
+
+snippet     yb
+abbr        RN Log to Yellow Box
+options     head
+       console.warn(JSON.stringify(${1}))
+# ----------------------------------------------------------------
+
+snippet     rb
+abbr        RN Log to Red Box
+options     head
+       console.error(JSON.stringify(${1}, null, ' '))
 # ----------------------------------------------------------------

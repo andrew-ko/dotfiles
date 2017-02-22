@@ -4,6 +4,7 @@ call plug#begin()
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'albertorestifo/github.vim'
 
 " Utilities
 Plug 'ctrlpvim/ctrlp.vim'
@@ -30,33 +31,34 @@ Plug 'Shougo/neosnippet-snippets'
 Plug 'mattn/emmet-vim'
 Plug 'benekastah/neomake'
 Plug 'benjie/neomake-local-eslint.vim'
-Plug 'majutsushi/tagbar'
+" Plug 'majutsushi/tagbar'
 Plug 'mileszs/ack.vim'
 Plug 'junegunn/vim-easy-align'
 
 " Language-specific plugins
-Plug 'gregsexton/MatchTag', { 'for': 'html' }
-Plug 'othree/html5.vim', { 'for': 'html' }
-Plug 'tpope/vim-markdown', { 'for': 'markdown' }
-Plug 'moll/vim-node', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'facebook/vim-flow', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'elzr/vim-json', { 'for': 'json' }
-Plug 'digitaltoad/vim-jade', { 'for': ['jade', 'pug'] }
-Plug 'groenewege/vim-less', { 'for': 'less' }
-Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
-Plug 'ap/vim-css-color', { 'for': ['css','less','stylus','scss'] }
-Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'less'] }
-Plug 'wavded/vim-stylus', { 'for': 'stylus' }
-Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-Plug 'tpope/vim-rails', { 'for': 'ruby' }
-Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
-Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
-Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
+Plug 'gregsexton/MatchTag',              { 'for': 'html' }
+Plug 'othree/html5.vim',                 { 'for': 'html' }
+Plug 'tpope/vim-markdown',               { 'for': 'markdown' }
+Plug 'moll/vim-node',                    { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'pangloss/vim-javascript',          { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'mxw/vim-jsx',                      { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'steelsojka/deoplete-flow',         { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'elzr/vim-json',                    { 'for': 'json' }
+Plug 'digitaltoad/vim-jade',             { 'for': ['jade', 'pug'] }
+Plug 'groenewege/vim-less',              { 'for': 'less' }
+Plug 'cakebaker/scss-syntax.vim',        { 'for': 'scss' }
+Plug 'ap/vim-css-color',                 { 'for': ['css','less','stylus','scss'] }
+Plug 'hail2u/vim-css3-syntax',           { 'for': ['css', 'less'] }
+Plug 'wavded/vim-stylus',                { 'for': 'stylus' }
+Plug 'vim-ruby/vim-ruby',                { 'for': 'ruby' }
+Plug 'tpope/vim-rails',                  { 'for': 'ruby' }
+Plug 'guns/vim-clojure-static',          { 'for': 'clojure' }
+Plug 'guns/vim-clojure-highlight',       { 'for': 'clojure' }
+Plug 'tpope/vim-fireplace',              { 'for': 'clojure' }
+Plug 'kchmck/vim-coffee-script',         { 'for': 'coffee' }
+Plug 'jwalton512/vim-blade',             { 'for': ['blade.php', 'php', 'blade'] }
 Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.handlebars' }
-Plug 'jwalton512/vim-blade', { 'for': ['blade.php', 'php', 'blade'] }
+Plug 'elixir-lang/vim-elixir',           { 'for': ['elixir', 'eelixir'] }
 
 call plug#end()
 
@@ -111,6 +113,9 @@ if !empty(glob("~/.config/nvim/plugged/gruvbox"))
   colorscheme gruvbox
 endif
 
+" colorscheme github
+" let g:airline_theme='github'
+
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 hi! link phpVarSelector Identifier
@@ -121,16 +126,9 @@ hi! link phpVarSelector Identifier
 " Plugins settings ------------------------------
 
 " Neomake
-
-autocmd! BufWritePost * Neomake
-" let g:neomake_verbose = 3
-
-let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_css_enabled_makers = ['stylelint']
-let g:neomake_php_phpcs_args_standard = 'PSR2'
-let g:neomake_error_sign = {'text': '✖', 'texthl': 'GruvboxBlueSign'}
-let g:neomake_highlight_columns = 0
-let g:neomake_highlight_lines = 0
+if filereadable(expand("~/.config/nvim/neomake.conf.vim"))
+  source ~/.config/nvim/neomake.conf.vim
+endif
 
 " Emmet
 let g:user_emmet_leader_key='<C-q>'
@@ -143,10 +141,7 @@ let g:jsx_ext_required = 0
 
 " Vim-javascript
 let g:javascript_plugin_jsdoc = 1
-
-" Flow
-let g:flow#autoclose = 1
-nmap <leader>f :FlowType<CR>
+let g:javascript_plugin_flow = 1
 
 " Fireplace
 au BufRead,BufNewFile {*.clj} nmap <leader>e :%Eval<CR>
@@ -213,7 +208,7 @@ nmap <leader>df :Gdiff<ESC>
 nmap <leader>st :Gstatus<ESC>
 
 " Tagbar
-nmap <leader>a :TagbarToggle<CR>
+" nmap <leader>a :TagbarToggle<CR>
 
 " -----------------------------------------------
 
@@ -257,6 +252,13 @@ set pastetoggle=<F2>
 " paragraph
 nmap <leader>sr vip:s/\%Vvar/import<CR>vip:s/\%V= require(/from /g<CR>vip:s/\%V)//g<CR>
 
+" Ack
+nmap <leader>f :Ack
+
+" Vim Commentary
+autocmd FileType php setlocal commentstring=#\ %s
+" autocmd FileType javascript.jsx setlocal commentstring={/*\ %s\ */}
+
 " -----------------------------------------------
 
 " AutoCommands ----------------------------------
@@ -267,9 +269,9 @@ au BufRead,BufNewFile {.babelrc,composer.lock} set ft=json
 au BufRead,BufNewFile {*.xml.dist} set ft=xml
 au BufRead,BufNewFile {.codeclimate,.bootstraprc} set ft=yaml
 au BufRead,BufNewFile {*.es6} set ft=javascript
+au BufRead,BufNewFile {*.flow} set ft=javascript.jsx
 au BufRead,BufNewFile {.gitignore} set ft=conf
 
-autocmd FileType php setlocal commentstring=#\ %s
 
 " Always jump to the last known cursor position.
 autocmd BufReadPost *
@@ -277,4 +279,7 @@ autocmd BufReadPost *
       \   exe "normal g`\"" |
       \ endif
 
+
 " -----------------------------------------------
+autocmd FileType ruby compiler ruby
+

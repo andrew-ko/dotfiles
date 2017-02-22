@@ -3,6 +3,7 @@
 	name = andrew-ko
 [core]
 	editor = "nvim"
+	autocrlf = input
 [alias]
 	st = status
 	last = log -1 HEAD
