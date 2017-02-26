@@ -18,11 +18,10 @@ let g:neomake_php_phpcs_args_standard = 'PSR2'
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_jsx_enabled_makers = ['eslint']
 
-let g:flow_path = StrTrim(system('PATH=$(npm bin):$PATH && which flow'))
-
 " add flow
 if findfile('.flowconfig', '.;') !=# ''
   let g:flow_path = StrTrim(system('PATH=$(npm bin):$PATH && which flow'))
+
   if g:flow_path != 'flow not found'
     let g:neomake_javascript_flow_maker = {
           \ 'exe': 'sh',
@@ -30,6 +29,8 @@ if findfile('.flowconfig', '.;') !=# ''
           \ 'errorformat': '%E%f:%l:%c\,%n: %m',
           \ 'cwd': '%:p:h'
           \ }
+
+    let g:neomake_jsx_flow_maker = g:neomake_javascript_flow_maker
 
     let g:neomake_javascript_enabled_makers = g:neomake_javascript_enabled_makers + [ 'flow']
     let g:neomake_jsx_enabled_makers = g:neomake_jsx_enabled_makers + [ 'flow']

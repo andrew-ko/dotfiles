@@ -55,6 +55,7 @@ Plug 'tpope/vim-rails',                  { 'for': 'ruby' }
 Plug 'guns/vim-clojure-static',          { 'for': 'clojure' }
 Plug 'guns/vim-clojure-highlight',       { 'for': 'clojure' }
 Plug 'tpope/vim-fireplace',              { 'for': 'clojure' }
+Plug 'kien/rainbow_parentheses.vim',     { 'for': 'clojure' }
 Plug 'kchmck/vim-coffee-script',         { 'for': 'coffee' }
 Plug 'jwalton512/vim-blade',             { 'for': ['blade.php', 'php', 'blade'] }
 Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.handlebars' }
@@ -129,6 +130,15 @@ hi! link phpVarSelector Identifier
 if filereadable(expand("~/.config/nvim/neomake.conf.vim"))
   source ~/.config/nvim/neomake.conf.vim
 endif
+
+" Rainbow Parentheses
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
+nmap <silent> <leader>0 :RainbowParenthesesToggle<cr>
+" au VimEnter * RainbowParenthesesToggle
+" au Syntax * RainbowParenthesesLoadRound
+" au Syntax * RainbowParenthesesLoadSquare
+" au Syntax * RainbowParenthesesLoadBraces
 
 " Emmet
 let g:user_emmet_leader_key='<C-q>'
