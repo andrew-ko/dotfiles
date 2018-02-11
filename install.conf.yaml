@@ -1,0 +1,21 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+
+- clean: ['~', '~/.config']
+
+- link:
+    ~/.bash_profile: files/bash_profile
+    ~/.bash_aliases: files/bash_aliases
+    ~/.tmux.conf: files/tmux.conf
+    ~/.gitconfig: files/gitconfig
+    ~/.config/nvim: files/nvim
+
+- shell:
+  - ["curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim",
+      Installing vim-plug]
+  - [git submodule update --init --recursive,
+     Installing submodules]
+
