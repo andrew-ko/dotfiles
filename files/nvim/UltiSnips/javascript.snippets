@@ -1,0 +1,194 @@
+snippet cl
+console.log($0)
+endsnippet
+
+snippet i
+import { $1 } from '$0'
+endsnippet
+
+snippet ir
+import React from 'react'
+endsnippet
+
+snippet irc
+import React, {	${3:Component} } from 'react'
+endsnippet
+
+snippet ip
+import PropTypes from 'prop-types';
+endsnippet
+
+snippet =>
+=> {
+  $1
+}
+endsnippet
+
+snippet pter
+PropTypes.element.isRequired,
+endsnippet
+
+snippet ptfr
+PropTypes.func.isRequired,
+endsnippet
+
+snippet ptf
+PropTypes.func,
+endsnippet
+
+snippet ptbr
+PropTypes.bool.isRequired,
+endsnippet
+
+snippet ptb
+PropTypes.bool,
+endsnippet
+
+snippet ptar
+PropTypes.array.isRequired,
+endsnippet
+
+snippet pta
+PropTypes.array,
+endsnippet
+
+snippet ptor
+PropTypes.object.isRequired,
+endsnippet
+
+snippet pto
+PropTypes.object,
+endsnippet
+
+snippet ptnr
+PropTypes.number.isRequired,
+endsnippet
+
+snippet ptn
+PropTypes.number,
+endsnippet
+
+snippet ptsr
+PropTypes.string.isRequired,
+endsnippet
+
+snippet pts
+PropTypes.string,
+endsnippet
+
+snippet ptshr
+PropTypes.shape({
+  $0
+}).isRequired,
+endsnippet
+
+snippet ptsh
+PropTypes.shape({
+  $0
+}).isRequired,
+endsnippet
+
+snippet sett
+setTimeout(() => {
+  $0
+}, ${1:1000})
+endsnippet
+
+snippet //
+{/*
+$0
+*/}
+endsnippet
+
+snippet render
+render() {
+  return (
+    $0
+  );
+}
+endsnippet
+
+snippet constructor
+constructor(props) {
+  super(props);
+
+  $0
+}
+endsnippet
+
+snippet s
+import s from './styles${1:.css}';
+endsnippet
+
+snippet *
+function* ${1}(${2}) {
+  $0
+}
+endsnippet
+
+snippet fl
+// @flow
+$0
+endsnippet
+
+snippet rfc
+import React from 'react'
+
+const ${1} = () => {
+  return (
+    <div>
+      $1
+    </div>
+  )
+}
+
+export default $1
+endsnippet
+
+snippet rnfc
+import React from 'react';
+import { View, Text } from 'react-native';
+import s from './styles';
+
+const ${1} = () => {
+  return (
+    <View style={s.container}>
+      <Text>$1</Text>
+    </View>
+  );
+};
+
+export default $1;
+endsnippet
+
+snippet rnc
+import React from 'react';
+import { View, Text } from 'react-native';
+import s from './styles';
+
+class ${1} extends React.Component {
+  render() {
+    return (
+      <View style={s.container}>
+        <Text>$1</Text>
+      </View>
+    );
+  }
+}
+
+export default $1;
+endsnippet
+
+snippet irn
+import { $1 } from 'react-native';
+endsnippet
+
+snippet iss
+import { StyleSheet } from 'react-native';
+
+export default StyleSheet.create({
+  container: {
+    $0
+  }
+});
+endsnippet

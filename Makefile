@@ -21,7 +21,7 @@ help: 					##@base Show this help
 	#
 	@perl -e '$(HELP_FUN)' $(MAKEFILE_LIST)
 
-install_ansible:			##@base Install ansible from apt-get
+install_ansible:		##@base Install ansible from apt-get
 	sudo apt-get install software-properties-common
 	sudo apt-add-repository ppa:ansible/ansible
 	sudo apt-get update

@@ -20,6 +20,8 @@ let g:neomake_jsx_enabled_makers = ['eslint']
 
 " add flow
 if findfile('.flowconfig', '.;') !=# ''
+  let g:flow#enable = 0
+
   let g:flow_path = StrTrim(system('PATH=$(npm bin):$PATH && which flow'))
 
   if g:flow_path != 'flow not found'
@@ -36,6 +38,6 @@ if findfile('.flowconfig', '.;') !=# ''
     let g:neomake_jsx_enabled_makers = g:neomake_jsx_enabled_makers + [ 'flow']
 
     " A plugin for deoplete to get flow autocompletion functionality.
-    let g:deoplete#sources#flow#flow_bin = g:flow_path
+    " let g:deoplete#sources#flow#flow_bin = g:flow_path
   endif
 endif

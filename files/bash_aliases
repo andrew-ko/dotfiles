@@ -1,43 +1,26 @@
-# Tmux
-alias t="tmux"
-alias ks-tmux="tmux kill-session"
-
-# Vim
-alias v="nvim"
-alias n="DARK_BG=1 nvim"
-alias nvim-config="v ~/.config/nvim/init.vim"
-
-# Git
 alias gil="git log --oneline --graph --decorate --all"
 alias gis="git status"
 alias gia="git add -A"
-alias gic="git commit"
-alias gicm="git checkout master"
-alias giff="git difftool"
 
-# Yarn
+alias v="nvim"
+alias n="DARK_BG=1 nvim"
+alias nvim-config="nvim ~/.config/nvim/init.vim"
+
+alias t="tmux"
+alias ks-tmux="tmux kill-session"
+
 alias ya="yarn add"
 alias yad="yarn add --dev"
 alias yarm="yarn remove"
 alias yaui="yarn upgrade-interactive"
 
-# React Native development
-alias dmenu="adb shell input keyevent 82"
-alias rn="react-native"
+alias dm="adb shell input keyevent 82"
 alias adb-reverse="adb reverse tcp:8081 tcp:8081"
 
-# Docker
-alias dps="docker ps"
-alias dpa="docker ps -a"
-
-# Navigation
 alias ..="cd .."
 alias ...="cd ../.."
 alias ll="ls -alh"
 alias la="ls -A"
-alias tl="tree -L 1"
+alias tl="tree -CL 1"
 alias d="cd ~"
 alias c="clear"
-
-# Load local aliases
-[[ -s "$HOME/.local_aliases" ]] && source "$HOME/.local_aliases"
