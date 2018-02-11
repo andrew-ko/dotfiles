@@ -4,5 +4,6 @@
     ./install
 
 ------------------------------------------------------------------
-Dotfiles uses [Dotbot][dotbot] for installation.
+Dotfiles uses [Dotbot](https://github.com/anishathalye/dotbot) for installation.
+
 Install script is idempotent: it can safely be run multiple times.
