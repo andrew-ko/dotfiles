@@ -5,6 +5,7 @@ function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
 endfunction
 
 call NERDTreeHighlightFile('yml', '141', 'none', '#af87ff', '#')
+call NERDTreeHighlightFile('yaml', '141', 'none', '#af87ff', '#')
 call NERDTreeHighlightFile('html', '73', 'none', '#5fafaf', '#')
 call NERDTreeHighlightFile('haml', '73', 'none', '#5fafaf', '#')
 call NERDTreeHighlightFile('jade', '73', 'none', '#5fafaf', '#')
