@@ -1,6 +1,6 @@
 [user]
 	email = andrkvlnko@gmail.com
-	name = andrew-ko
+	name = Andrew Kovalenko
 [core]
 	editor = "nvim"
 	autocrlf = input

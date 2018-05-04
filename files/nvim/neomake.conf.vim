@@ -9,7 +9,7 @@ let g:neomake_error_sign = {'text': '✖', 'texthl': 'GruvboxBlueSign'}
 " let g:neomake_highlight_lines = 0
 
 " CSS
-let g:neomake_css_enabled_makers = ['stylelint']
+" let g:neomake_css_enabled_makers = ['stylelint']
 
 " PHP
 let g:neomake_php_phpcs_args_standard = 'PSR2'

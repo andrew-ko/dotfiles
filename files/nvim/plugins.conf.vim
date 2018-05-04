@@ -34,6 +34,10 @@ let g:jsx_ext_required = 0
 " Scala
 let g:scala_scaladoc_indent = 1
 
+" Elixir
+set formatprg=mix\ format\ -
+autocmd FileType elixir nnoremap <leader>fef :w<CR>:MixFormat<CR>
+
 " Vim-javascript
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
@@ -84,43 +88,6 @@ nmap ga <Plug>(EasyAlign)
 " Fugitive
 nmap <leader>df :Gdiff<ESC>
 nmap <leader>st :Gstatus<ESC>
-" -----------------------------------------------
-
-" Mappings --------------------------------------
-
-" Temporarily disable search matches highlighting
-nmap <silent> // :nohlsearch<CR>
-
-" Map ctrl-movement keys to window switching
-map <C-k> <C-w><Up>
-map <C-j> <C-w><Down>
-map <C-l> <C-w><Right>
-map <C-h> <C-w><Left>
-
-" Allow to copy/paste between VIM instances
-vmap <Leader>y :w! ~/.vbuf<CR>
-nmap <Leader>y :.w! ~/.vbuf<CR>
-nmap <Leader>p :r ~/.vbuf<CR>
-
-" Word upper/lower
-nmap <leader>u mQviwU`Q
-nmap <leader>l mQviwu`Q
-
-" Tmux navigator mappings
-let g:tmux_navigator_no_mappings = 1
-nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
-
-" Format the entire file
-nnoremap <leader>fef :normal! gg=G``<CR>
-
-" Append semicolon
-nmap ; A;<ESC>
-
-" Past mode toggle
-set pastetoggle=<F2>
 
 " Ack
 let g:ackprg = 'ag --vimgrep --ignore *.lock --ignore node_modules --ignore *.*.map'
@@ -128,4 +95,16 @@ nmap <leader>f :Ack
 
 " Vim Commentary
 autocmd FileType php setlocal commentstring=#\ %s
+
+" LanguageClient-neovim
+" Reason
+let g:LanguageClient_serverCommands = {
+    \ 'reason': ['ocaml-language-server', '--stdio'],
+    \ 'ocaml': ['ocaml-language-server', '--stdio'],
+    \ }
+
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<cr>
+nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<cr>
+nnoremap <silent> <cr> :call LanguageClient_textDocument_hover()<cr>
+
 

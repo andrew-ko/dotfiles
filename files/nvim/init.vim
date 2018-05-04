@@ -47,6 +47,7 @@ Plug 'elzr/vim-json',                    { 'for': 'json' }
 Plug 'moll/vim-node',                    { 'for': ['javascript'] }
 Plug 'pangloss/vim-javascript',          { 'for': ['javascript', 'javascript.jsx', 'vue'] }
 Plug 'mxw/vim-jsx',                      { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'leafgarland/typescript-vim',       { 'for': 'typescript' }
 Plug 'vim-ruby/vim-ruby',                { 'for': 'ruby' }
 Plug 'tpope/vim-rails',                  { 'for': 'ruby' }
 Plug 'guns/vim-clojure-static',          { 'for': 'clojure' }
@@ -55,11 +56,18 @@ Plug 'tpope/vim-fireplace',              { 'for': 'clojure' }
 Plug 'kien/rainbow_parentheses.vim',     { 'for': 'clojure' }
 Plug 'bhurlow/vim-parinfer',             { 'for': 'clojure' }
 Plug 'kchmck/vim-coffee-script',         { 'for': 'coffee' }
-Plug 'elixir-lang/vim-elixir',           { 'for': ['elixir', 'eelixir'] }
-Plug 'slashmili/alchemist.vim',          { 'for': ['elixir', 'eelixir'] }
+Plug 'elixir-editors/vim-elixir',        { 'for': ['elixir', 'eelixir'] }
+Plug 'mhinz/vim-mix-format',             { 'for': ['elixir', 'eelixir'] }
 Plug 'derekwyatt/vim-scala',             { 'for': 'scala' }
 Plug 'elmcast/elm-vim',                  { 'for': 'elm' }
 Plug 'posva/vim-vue',                    { 'for': 'vue' }
+
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ 'for': ['reason', 'reasonml', 'ocaml']
+    \ }
+Plug 'reasonml-editor/vim-reason-plus', { 'for': ['reason', 'reasonml', 'ocaml'] }
 
 call plug#end()
 
