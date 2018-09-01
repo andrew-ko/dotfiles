@@ -10,10 +10,10 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mbbill/undotree'
 Plug 'scrooloose/nerdtree' | Plug 'jistr/vim-nerdtree-tabs'
 Plug 'jeetsukumaran/vim-buffergator'
-Plug 'Raimondi/delimitMate'
+Plug 'Raimondi/delimitMate' " provides insert mode auto-completion for quotes, parens, brackets, etc.
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-unimpaired' " pairs of handy bracket mappings
+Plug 'tpope/vim-endwise' " This is a simple plugin that helps to end certain structures automatically
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
@@ -23,14 +23,20 @@ Plug 'mhinz/vim-startify'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'mattn/emmet-vim'
-Plug 'benekastah/neomake'
-Plug 'benjie/neomake-local-eslint.vim'
 Plug 'mileszs/ack.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'cloudhead/neovim-fuzzy'
-Plug 'roxma/nvim-completion-manager'
-Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
 Plug 'SirVer/ultisnips'
+Plug 'w0rp/ale'
+
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2'
+Plug 'ncm2/ncm2-tern',  {'do': 'npm install'}
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-tmux'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-ultisnips'
+
 
 " Language-specific
 Plug 'gregsexton/MatchTag',              { 'for': ['html', 'vue'] }
@@ -46,7 +52,7 @@ Plug 'tpope/vim-markdown',               { 'for': 'markdown' }
 Plug 'elzr/vim-json',                    { 'for': 'json' }
 Plug 'moll/vim-node',                    { 'for': ['javascript'] }
 Plug 'pangloss/vim-javascript',          { 'for': ['javascript', 'javascript.jsx', 'vue'] }
-Plug 'mxw/vim-jsx',                      { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'mxw/vim-jsx',                      { 'for': ['javascript', 'javascript.jsx', 'typescript'] }
 Plug 'leafgarland/typescript-vim',       { 'for': 'typescript' }
 Plug 'vim-ruby/vim-ruby',                { 'for': 'ruby' }
 Plug 'tpope/vim-rails',                  { 'for': 'ruby' }
@@ -62,11 +68,15 @@ Plug 'derekwyatt/vim-scala',             { 'for': 'scala' }
 Plug 'elmcast/elm-vim',                  { 'for': 'elm' }
 Plug 'posva/vim-vue',                    { 'for': 'vue' }
 
+Plug 'prettier/vim-prettier', {
+      \ 'do': 'yarn install',
+      \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
+
 Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ 'for': ['reason', 'reasonml', 'ocaml']
-    \ }
+      \ 'branch': 'next',
+      \ 'do': 'bash install.sh',
+      \ 'for': ['reason', 'reasonml', 'ocaml']
+      \ }
 Plug 'reasonml-editor/vim-reason-plus', { 'for': ['reason', 'reasonml', 'ocaml'] }
 
 call plug#end()
@@ -111,7 +121,7 @@ let g:mapleader = ','
 " Colors ---------------------------------------------------
 
 " if $DARK_BG
-  set background=dark
+set background=dark
 " endif
 
 if !empty(glob("~/.config/nvim/plugged/gruvbox"))

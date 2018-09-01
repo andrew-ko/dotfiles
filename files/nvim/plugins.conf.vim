@@ -1,15 +1,40 @@
 " Neomake
-if filereadable(expand("~/.config/nvim/neomake.conf.vim"))
-  source ~/.config/nvim/neomake.conf.vim
-endif
+" if filereadable(expand("~/.config/nvim/neomake.conf.vim"))
+"   source ~/.config/nvim/neomake.conf.vim
+" endif
+
+" Ale
+let g:ale_completion_enabled = 1
+let g:airline#extensions#ale#enabled = 1
+let g:ale_lint_on_text_changed = 'normal'
+" highlight clear ALEErrorSign " otherwise uses error bg color (typically red)
+" highlight clear ALEWarningSign " otherwise uses error bg color (typically red)
+" let g:ale_sign_error = '✖' " could use emoji
+" let g:ale_sign_warning = '⚠️' " could use emoji
+" let g:ale_statusline_format = ['✖ %d', '? %d', '']
+let g:ale_echo_msg_format = '%linter%: %s'
+" Map keys to navigate between lines with errors and warnings.
+nnoremap <leader>an :ALENextWrap<cr>
+nnoremap <leader>ap :ALEPreviousWrap<cr>
+nnoremap <leader>af :ALEFix<cr>
+nnoremap <leader>ag :ALEGoToDefinition<cr>
+nnoremap <leader>ar :ALEFindReferences<cr>
+nnoremap <leader>ah :ALEHover<cr>
+let g:ale_linters = {}
+let g:ale_linters['javascript'] = ['eslint', 'flow']
+let g:ale_fixers = {}
+let g:ale_fixers['javascript'] = ['prettier', 'eslint']
 
 " Fuzzy
 nnoremap <leader>z :FuzzyOpen<CR>
 
-" Nvim completion manager
+" Nvim completion manager 2 (ncm2)
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set shortmess+=c
+set completeopt=noinsert,menuone,noselect
+inoremap <c-c> <ESC>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-set shortmess+=c
 
 " Ultisnips
 let g:UltiSnipsExpandTrigger='<C-l>'
@@ -99,12 +124,19 @@ autocmd FileType php setlocal commentstring=#\ %s
 " LanguageClient-neovim
 " Reason
 let g:LanguageClient_serverCommands = {
-    \ 'reason': ['ocaml-language-server', '--stdio'],
-    \ 'ocaml': ['ocaml-language-server', '--stdio'],
-    \ }
+      \ 'reason': ['ocaml-language-server', '--stdio'],
+      \ 'ocaml': ['ocaml-language-server', '--stdio'],
+      \ }
 
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<cr>
 nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<cr>
 nnoremap <silent> <cr> :call LanguageClient_textDocument_hover()<cr>
+all
+
+" Prettier
+let g:prettier#autoformat = 0
+" let g:prettier#config#single_quote = 'true'
+let g:prettier#config#trailing_comma = 'es5'
+nmap <Leader><Leader>p <Plug>(Prettier)
 
 
