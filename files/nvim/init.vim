@@ -112,9 +112,6 @@ endif
 
 syntax on
 
-let g:python_host_prog = '/Users/admin/.pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog = '/Users/admin/.pyenv/versions/neovim3/bin/python'
-
 let mapleader = ','
 let g:mapleader = ','
 
