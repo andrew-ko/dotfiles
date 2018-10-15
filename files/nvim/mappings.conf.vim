@@ -32,3 +32,6 @@ nmap ; A;<ESC>
 " Past mode toggle
 set pastetoggle=<F2>
 
+" Close Quickfix
+nmap <Leader>cc :cclose<CR>
+

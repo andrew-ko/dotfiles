@@ -3,7 +3,7 @@ console.log($0)
 endsnippet
 
 snippet i
-import { $1 } from '$0'
+import $0 from '$1';
 endsnippet
 
 snippet ir
@@ -132,7 +132,7 @@ $0
 endsnippet
 
 snippet rfc
-import React from 'react'
+import React from 'react';
 
 const ${1} = () => {
   return (
@@ -148,11 +148,11 @@ endsnippet
 snippet rnfc
 import React from 'react';
 import { View, Text } from 'react-native';
-import s from './styles';
+import styles from './styles';
 
 const ${1} = () => {
   return (
-    <View style={s.container}>
+    <View style={styles.container}>
       <Text>$1</Text>
     </View>
   );

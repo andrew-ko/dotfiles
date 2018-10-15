@@ -7,16 +7,17 @@ Plug 'vim-airline/vim-airline-themes'
 
 " Utilities
 Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'cloudhead/neovim-fuzzy'
 Plug 'mbbill/undotree'
 Plug 'scrooloose/nerdtree' | Plug 'jistr/vim-nerdtree-tabs'
-Plug 'jeetsukumaran/vim-buffergator'
+Plug 'jeetsukumaran/vim-buffergator' " Use <Leader>b to open a window listing all buffers
 Plug 'Raimondi/delimitMate' " provides insert mode auto-completion for quotes, parens, brackets, etc.
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-unimpaired' " pairs of handy bracket mappings
 Plug 'tpope/vim-endwise' " This is a simple plugin that helps to end certain structures automatically
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-repeat' " enable repeating supported plugin maps with '.'
+Plug 'tpope/vim-sleuth' " This plugin automatically adjusts 'shiftwidth' and 'expandtab' heuristically based on the current file
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-startify'
@@ -25,18 +26,12 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'mattn/emmet-vim'
 Plug 'mileszs/ack.vim'
 Plug 'junegunn/vim-easy-align'
-Plug 'cloudhead/neovim-fuzzy'
 Plug 'SirVer/ultisnips'
 Plug 'w0rp/ale'
-
-Plug 'roxma/nvim-yarp'
-Plug 'ncm2/ncm2'
-Plug 'ncm2/ncm2-tern',  {'do': 'npm install'}
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-tmux'
-Plug 'ncm2/ncm2-path'
-Plug 'ncm2/ncm2-ultisnips'
-
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'metakirby5/codi.vim' " interactive scratchpad: Codi [filetype]
+Plug 'mhinz/vim-signify' " diff in gutter
+Plug 'janko-m/vim-test'
 
 " Language-specific
 Plug 'gregsexton/MatchTag',              { 'for': ['html', 'vue'] }
@@ -68,16 +63,9 @@ Plug 'derekwyatt/vim-scala',             { 'for': 'scala' }
 Plug 'elmcast/elm-vim',                  { 'for': 'elm' }
 Plug 'posva/vim-vue',                    { 'for': 'vue' }
 
-Plug 'prettier/vim-prettier', {
-      \ 'do': 'yarn install',
-      \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
-
-Plug 'autozimu/LanguageClient-neovim', {
-      \ 'branch': 'next',
-      \ 'do': 'bash install.sh',
-      \ 'for': ['reason', 'reasonml', 'ocaml']
-      \ }
-Plug 'reasonml-editor/vim-reason-plus', { 'for': ['reason', 'reasonml', 'ocaml'] }
+" Plug 'prettier/vim-prettier', {
+"       \ 'do': 'yarn install',
+"       \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
 
 call plug#end()
 
@@ -104,7 +92,7 @@ set ignorecase
 set smartcase
 set number
 set nowrap
-" set clipboard+=unnamedplus
+set clipboard+=unnamedplus
 set diffopt+=vertical
 if has('mouse')
   set mouse=a
@@ -117,16 +105,12 @@ let g:mapleader = ','
 
 " Colors ---------------------------------------------------
 
-" if $DARK_BG
 set background=dark
-" endif
 
-if !empty(glob("~/.config/nvim/plugged/gruvbox"))
-  let g:gruvbox_italic=1
-  let g:gruvbox_hls_cursor='faded_aqua'
-  " let g:gruvbox_italicize_strings=1
-  colorscheme gruvbox
-endif
+colorscheme gruvbox
+let g:gruvbox_italic=1
+let g:gruvbox_hls_cursor='faded_aqua'
+" let g:gruvbox_italicize_strings=1
 
 hi! link phpVarSelector Identifier
 
@@ -152,6 +136,7 @@ autocmd FileType gitcommit,markdown setlocal spell
 au BufRead,BufNewFile {.babelrc,composer.lock,.eslintrc} set ft=json
 au BufRead,BufNewFile {*.xml.dist} set ft=xml
 au BufRead,BufNewFile {.codeclimate,.bootstraprc} set ft=yaml
+au BufRead,BufNewFile {.flowconfig} set ft=dosini
 " Always jump to the last known cursor position.
 autocmd BufReadPost *
       \ if line("'\"") > 0 && line("'\"") <= line("$") |

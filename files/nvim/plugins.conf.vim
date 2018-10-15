@@ -1,8 +1,3 @@
-" Neomake
-" if filereadable(expand("~/.config/nvim/neomake.conf.vim"))
-"   source ~/.config/nvim/neomake.conf.vim
-" endif
-
 " Ale
 let g:ale_completion_enabled = 1
 let g:airline#extensions#ale#enabled = 1
@@ -22,19 +17,39 @@ nnoremap <leader>ar :ALEFindReferences<cr>
 nnoremap <leader>ah :ALEHover<cr>
 let g:ale_linters = {}
 let g:ale_linters['javascript'] = ['eslint', 'flow']
+let g:ale_linters['sh'] = ['shellcheck']
+let g:ale_linters['bash'] = ['shellcheck']
 let g:ale_fixers = {}
+" let g:ale_fixers['javascript'] = ['eslint', 'prettier']
 let g:ale_fixers['javascript'] = ['prettier', 'eslint']
+let g:ale_fixers['json'] = ['prettier']
+let g:ale_fixers['graphql'] = ['prettier']
+let g:ale_fixers['markdown'] = ['prettier']
+let g:ale_linters['sh'] = ['shfmt']
+let g:ale_linters['bash'] = ['shfmt']
 
-" Fuzzy
-nnoremap <leader>z :FuzzyOpen<CR>
+let g:ale_fix_on_save = 1
+" let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5'
+let g:ale_sh_shfmt_options = '-i 2 -ci -p'
+let g:ale_bash_shfmt_options = '-i 2 -ci'
 
-" Nvim completion manager 2 (ncm2)
-autocmd BufEnter * call ncm2#enable_for_buffer()
-set shortmess+=c
-set completeopt=noinsert,menuone,noselect
-inoremap <c-c> <ESC>
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" CtrlP
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
+" " Fuzzy
+" nnoremap <leader>z :FuzzyOpen<CR>
+
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ deoplete#mappings#manual_complete()
+function! s:check_back_space() abort "{{{
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
 
 " Ultisnips
 let g:UltiSnipsExpandTrigger='<C-l>'
@@ -73,9 +88,6 @@ au BufRead,BufNewFile {*.clj} nmap <leader>e :%Eval<CR>
 " Buffergator
 let g:buffergator_viewport_split_policy = "B"
 let g:buffergator_sort_regime = "mru"
-
-" CtrlP
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 " Persistent Undo
 " Keep undo history across sessions, by storing in file.
@@ -121,22 +133,17 @@ nmap <leader>f :Ack
 " Vim Commentary
 autocmd FileType php setlocal commentstring=#\ %s
 
-" LanguageClient-neovim
-" Reason
-let g:LanguageClient_serverCommands = {
-      \ 'reason': ['ocaml-language-server', '--stdio'],
-      \ 'ocaml': ['ocaml-language-server', '--stdio'],
-      \ }
-
-nnoremap <silent> gd :call LanguageClient_textDocument_definition()<cr>
-nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<cr>
-nnoremap <silent> <cr> :call LanguageClient_textDocument_hover()<cr>
-all
-
 " Prettier
-let g:prettier#autoformat = 0
-" let g:prettier#config#single_quote = 'true'
-let g:prettier#config#trailing_comma = 'es5'
-nmap <Leader><Leader>p <Plug>(Prettier)
+" let g:prettier#autoformat = 0
+" " let g:prettier#config#single_quote = 'true'
+" let g:prettier#config#trailing_comma = 'es5'
+" nmap <Leader><Leader>p <Plug>(Prettier)
 
+" Vim test
+let test#strategy = "neovim"
 
+nmap <silent> t<C-n> :TestNearest<CR> " t Ctrl+n
+nmap <silent> t<C-f> :TestFile<CR>    " t Ctrl+f
+nmap <silent> t<C-s> :TestSuite<CR>   " t Ctrl+s
+nmap <silent> t<C-l> :TestLast<CR>    " t Ctrl+l
+nmap <silent> t<C-g> :TestVisit<CR>   " t Ctrl+g
