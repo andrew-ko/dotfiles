@@ -1,17 +1,18 @@
 [user]
 	email = andrkvlnko@gmail.com
-	name = "Andrew Kovalenko"
+	name = Andrew Kovalenko
 [core]
 	editor = "nvim"
 	autocrlf = input
-	excludesfile = /Users/admin/.gitignore_global
+	excludesfile = /Users/kovalenko/.gitignore_global
 [alias]
 	st = status
 	last = log -1 HEAD
 	co = checkout
 	br = branch
-	hist = log --oneline --graph
-	l = log --oneline --graph --decorate --all
+	hist = log --oneline --graph --decorate
+	l = log --oneline --decorate
+	lg = log --pretty=format:'%C(bold)%h%Creset%C(magenta)%d%Creset %s %C(yellow)<%an> %C(cyan)(%cr)%Creset' --abbrev-commit --date=relative
 [push]
 	default = simple
 [merge]

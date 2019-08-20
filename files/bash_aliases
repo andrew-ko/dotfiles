@@ -6,16 +6,15 @@ alias v="nvim"
 alias n="DARK_BG=1 nvim"
 alias nvim-config="nvim ~/.config/nvim/init.vim"
 
-alias t="tmux"
-alias ks-tmux="tmux kill-session"
-
 alias ya="yarn add"
 alias yad="yarn add --dev"
 alias yarm="yarn remove"
 alias yaui="yarn upgrade-interactive"
 
 alias dm="adb shell input keyevent 82"
-alias adb-reverse="adb reverse tcp:8081 tcp:8081"
+
+alias phiex="iex -S mix phx.server"
+alias piex="iex -S mix phx.server"
 
 alias ..="cd .."
 alias ...="cd ../.."
@@ -24,3 +23,10 @@ alias la="ls -A"
 alias tl="tree -CL 1"
 alias d="cd ~"
 alias c="clear"
+
+alias remove-merged-branches="git branch --merged >/tmp/merged-branches && nvim /tmp/merged-branches && xargs git branch -d </tmp/merged-branches"
+alias remove-local-branches="git branch >/tmp/merged-branches && nvim /tmp/merged-branches && xargs git branch -D </tmp/merged-branches"
+
+alias fco="git checkout \$(git branch | fzf)"
+alias co="fco"
+

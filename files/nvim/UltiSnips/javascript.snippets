@@ -2,6 +2,10 @@ snippet cl
 console.log($0)
 endsnippet
 
+snippet clp
+console.log('props', $1) ||$0
+endsnippet
+
 snippet i
 import $0 from '$1';
 endsnippet
@@ -14,116 +18,14 @@ snippet irc
 import React, {	${3:Component} } from 'react'
 endsnippet
 
-snippet ip
-import PropTypes from 'prop-types';
-endsnippet
-
-snippet =>
-=> {
-  $1
-}
-endsnippet
-
-snippet pter
-PropTypes.element.isRequired,
-endsnippet
-
-snippet ptfr
-PropTypes.func.isRequired,
-endsnippet
-
-snippet ptf
-PropTypes.func,
-endsnippet
-
-snippet ptbr
-PropTypes.bool.isRequired,
-endsnippet
-
-snippet ptb
-PropTypes.bool,
-endsnippet
-
-snippet ptar
-PropTypes.array.isRequired,
-endsnippet
-
-snippet pta
-PropTypes.array,
-endsnippet
-
-snippet ptor
-PropTypes.object.isRequired,
-endsnippet
-
-snippet pto
-PropTypes.object,
-endsnippet
-
-snippet ptnr
-PropTypes.number.isRequired,
-endsnippet
-
-snippet ptn
-PropTypes.number,
-endsnippet
-
-snippet ptsr
-PropTypes.string.isRequired,
-endsnippet
-
-snippet pts
-PropTypes.string,
-endsnippet
-
-snippet ptshr
-PropTypes.shape({
-  $0
-}).isRequired,
-endsnippet
-
-snippet ptsh
-PropTypes.shape({
-  $0
-}).isRequired,
-endsnippet
-
-snippet sett
-setTimeout(() => {
-  $0
-}, ${1:1000})
-endsnippet
-
 snippet //
 {/*
 $0
 */}
 endsnippet
 
-snippet render
-render() {
-  return (
-    $0
-  );
-}
-endsnippet
-
-snippet constructor
-constructor(props) {
-  super(props);
-
-  $0
-}
-endsnippet
-
 snippet s
 import s from './styles${1:.css}';
-endsnippet
-
-snippet *
-function* ${1}(${2}) {
-  $0
-}
 endsnippet
 
 snippet fl
@@ -146,13 +48,15 @@ export default $1
 endsnippet
 
 snippet rnfc
+// @flow
+
 import React from 'react';
 import { View, Text } from 'react-native';
-import styles from './styles';
+import s from './styles';
 
 const ${1} = () => {
   return (
-    <View style={styles.container}>
+    <View style={s.container}>
       <Text>$1</Text>
     </View>
   );
@@ -184,6 +88,8 @@ import { $1 } from 'react-native';
 endsnippet
 
 snippet iss
+// @flow
+
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
@@ -191,4 +97,8 @@ export default StyleSheet.create({
     $0
   }
 });
+endsnippet
+
+snippet ire
+import $1 from 'recompose/$1';
 endsnippet

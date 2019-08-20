@@ -24,7 +24,7 @@ nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
 
 " Format the entire file
-nnoremap <leader>fef :normal! gg=G``<CR>
+" nnoremap <leader>fef :normal! gg=G``<CR>
 
 " Append semicolon
 nmap ; A;<ESC>
@@ -35,3 +35,11 @@ set pastetoggle=<F2>
 " Close Quickfix
 nmap <Leader>cc :cclose<CR>
 
+" Sort selected list alphabetically
+vmap <Leader>s :sort<CR>
+
+" Misc
+nnoremap <Leader>w :w<CR>
+nnoremap <leader>fc :Commits<CR>
+nnoremap <leader>ff :Files<CR>
+nnoremap <leader>fa :Ag<CR>
