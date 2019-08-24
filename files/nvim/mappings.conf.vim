@@ -37,6 +37,9 @@ nmap <Leader>cc :cclose<CR>
 
 " Sort selected list alphabetically
 vmap <Leader>s :sort<CR>
+" Sort within line
+vnoremap <leader>ls d:execute 'normal i' . join(sort(split(getreg('"'))), ' ')<CR>
+
 
 " Misc
 nnoremap <Leader>w :w<CR>

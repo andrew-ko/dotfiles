@@ -2,7 +2,6 @@ call plug#begin()
 
 " Colorschemes
 Plug 'morhetz/gruvbox'
-Plug 'NLKNguyen/papercolor-theme'
 Plug 'arcticicestudio/nord-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -88,6 +87,7 @@ set diffopt+=vertical      " Start diff mode with vertical splits
 if has('mouse')
   set mouse=a              " Enable the use of the mouse ('a' - for all 4 modes)
 endif
+set laststatus=2
 
 syntax on
 
@@ -106,13 +106,8 @@ let g:nord_italic = 1
 let g:nord_underline = 1
 let g:nord_italic_comments = 1
 let g:nord_cursor_line_number_background = 1
-" let g:nord_comment_brightness = 20
 colorscheme nord
 
-" set background=light
-" colorscheme PaperColor
-
-" let g:airline_powerline_fonts = 1
 hi! link phpVarSelector Identifier
 
 " Plugins settings -----------------------------------------
