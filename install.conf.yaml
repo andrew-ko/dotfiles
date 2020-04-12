@@ -8,7 +8,7 @@
 - link:
     ~/.bash_profile: files/bash_profile
     ~/.bash_aliases: files/bash_aliases
-    ~/.tmux.conf: files/tmux.conf
+    ~/.zshrc: files/zshrc
     ~/.gitconfig: files/gitconfig
     ~/.config/nvim: files/nvim
 

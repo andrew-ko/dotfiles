@@ -8,9 +8,13 @@ map <C-l> <C-w><Right>
 map <C-h> <C-w><Left>
 
 " Allow to copy/paste between VIM instances
-vmap <Leader>y :w! ~/.vbuf<CR>
-nmap <Leader>y :.w! ~/.vbuf<CR>
-nmap <Leader>p :r ~/.vbuf<CR>
+" vmap <Leader>y :w! ~/.vbuf<CR>
+" nmap <Leader>y :.w! ~/.vbuf<CR>
+" nmap <Leader>p :r ~/.vbuf<CR>
+
+" Use system clipboard to copy/paste
+vnoremap  <leader>y "+y
+nnoremap <leader>p "+p
 
 " Word upper/lower
 nmap <leader>u mQviwU`Q
@@ -33,16 +37,16 @@ nmap ; A;<ESC>
 set pastetoggle=<F2>
 
 " Close Quickfix
-nmap <Leader>cc :cclose<CR>
+" nmap <Leader>cc :cclose<CR>
 
 " Sort selected list alphabetically
 vmap <Leader>s :sort<CR>
-" Sort within line
-vnoremap <leader>ls d:execute 'normal i' . join(sort(split(getreg('"'))), ' ')<CR>
-
 
 " Misc
 nnoremap <Leader>w :w<CR>
 nnoremap <leader>fc :Commits<CR>
-nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fa :Ag<CR>
+nnoremap <leader>ff :Files<CR>
+
+" Closes current window, unless it is the last one
+nmap <leader>c :close<CR>

@@ -4,7 +4,13 @@
     "javascriptreact",
     "json",
     "typescript",
-    "typescriptreact"
+    "typescriptreact",
+    "dart",
+    "elixir",
+    "eelixir"
   ],
-  "highlight.colors.enable": false
+  "highlight.colors.enable": false,
+  "java.errors.incompleteClasspath.severity": "ignore",
+  "tsserver.enableJavascript": false,
+  "eslint.run": "onSave"
 }

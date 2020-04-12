@@ -3,9 +3,9 @@ call plug#begin()
 " Colorschemes
 Plug 'morhetz/gruvbox'
 Plug 'arcticicestudio/nord-vim'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" Plug 'itchyny/lightline.vim'
 
 " Utilities
 Plug 'Raimondi/delimitMate' " provides insert mode auto-completion for quotes, parens, brackets, etc.
@@ -21,6 +21,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'mbbill/undotree'
 Plug 'mhinz/vim-startify'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdtree' | Plug 'jistr/vim-nerdtree-tabs'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
@@ -29,11 +30,11 @@ Plug 'tpope/vim-repeat' " enable repeating supported plugin maps with '.'
 Plug 'tpope/vim-sleuth' " This plugin automatically adjusts 'shiftwidth' and 'expandtab' heuristically based on the current file
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired' " pairs of handy bracket mappings
+Plug 'nicwest/vim-http'
 
 " Language-specific
-Plug 'chemzqm/vim-jsx-improve',          { 'for': 'javascript' }
-Plug 'leafgarland/typescript-vim',       { 'for': 'typescript' }
-Plug 'peitalin/vim-jsx-typescript',      { 'for': 'typescript' }
+Plug 'leafgarland/typescript-vim'
+Plug 'ianks/vim-tsx'
 Plug 'vim-ruby/vim-ruby',                { 'for': 'ruby' }
 Plug 'tpope/vim-rails',                  { 'for': 'ruby' }
 Plug 'guns/vim-clojure-static',          { 'for': 'clojure' }
@@ -42,7 +43,6 @@ Plug 'tpope/vim-fireplace',              { 'for': 'clojure' }
 Plug 'kien/rainbow_parentheses.vim',     { 'for': 'clojure' }
 Plug 'bhurlow/vim-parinfer',             { 'for': 'clojure' }
 Plug 'elixir-editors/vim-elixir',        { 'for': ['elixir', 'eelixir'] }
-Plug 'mhinz/vim-mix-format',             { 'for': ['elixir', 'eelixir'] }
 Plug 'derekwyatt/vim-scala',             { 'for': 'scala' }
 Plug 'elmcast/elm-vim',                  { 'for': 'elm' }
 Plug 'posva/vim-vue',                    { 'for': 'vue' }
@@ -54,9 +54,7 @@ Plug 'cakebaker/scss-syntax.vim',        { 'for': 'scss' }
 Plug 'hail2u/vim-css3-syntax',           { 'for': ['css', 'less', 'vue'] }
 Plug 'iamcco/markdown-preview.nvim',     { 'do': 'cd app & yarn install', 'for': 'markdown'  }
 Plug 'jxnblk/vim-mdx-js',                { 'for': 'markdown.mdx' }
-
-Plug 'liuchengxu/vista.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'dart-lang/dart-vim-plugin',        { 'for': 'dart' }
 
 call plug#end()
 
@@ -82,7 +80,7 @@ set ignorecase             " Ignore case in search patterns
 set smartcase              " Override the 'ignorecase' option if the search pattern contains upper case characters
 set number                 " Precede each line with its line number
 set nowrap                 " Lines will not wrap and only part of long lines will be displayed.
-set clipboard+=unnamedplus " To always use the clipboard for all operations
+" set clipboard+=unnamedplus " To always use the clipboard for all operations
 set diffopt+=vertical      " Start diff mode with vertical splits
 if has('mouse')
   set mouse=a              " Enable the use of the mouse ('a' - for all 4 modes)
@@ -96,19 +94,40 @@ let g:mapleader = ','
 
 " Colors ---------------------------------------------------
 
+" Gruvbox {{
 " set background=dark
 " let g:gruvbox_italic=1
 " " let g:gruvbox_bold=0
 " let g:gruvbox_hls_cursor='faded_aqua'
 " colorscheme gruvbox
+" }}
 
-let g:nord_italic = 1
-let g:nord_underline = 1
-let g:nord_italic_comments = 1
-let g:nord_cursor_line_number_background = 1
-colorscheme nord
+" PaperColor {{
+let g:PaperColor_Theme_Options = {
+      \   'theme': {
+      \     'default': {
+      \       'allow_bold': 0,
+      \       'allow_italic': 1,
+      \       'transparent_background': 0
+      \     }
+      \   },
+      \ }
+set background=light
+colorscheme PaperColor
+hi link typescriptType Special
+hi link typescriptNull Conditional
+hi! link NERDTreeDirSlash Keyword
+hi! link NERDTreeDir Keyword
+hi! link NERDTreeHelp Comment
+" }}
 
-hi! link phpVarSelector Identifier
+" Nord {{
+" let g:nord_italic = 1
+" let g:nord_underline = 1
+" let g:nord_italic_comments = 1
+" let g:nord_cursor_line_number_background = 1
+" colorscheme nord
+" }}
 
 " Plugins settings -----------------------------------------
 

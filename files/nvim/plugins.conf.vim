@@ -1,3 +1,13 @@
+" TSX
+autocmd BufRead,BufNewFile {*.tsx} set ft=typescript.tsx
+
+" Flutter
+command! -nargs=0 FlutterRun :CocCommand flutter.run
+command! -nargs=0 PubGet :CocCommand flutter.pub.get
+
+" Dart
+" let g:dart_format_on_save = 1
+
 " FZF
 
 let g:fzf_colors =
@@ -19,13 +29,8 @@ autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
-" Vista
-let g:vista_default_executive = 'coc'
-let g:vista#renderer#enable_icon = 0
-" The default icons can't be suitable for all the filetypes, you can extend it as you wish.
-" To enable fzf's preview window set g:vista_fzf_preview.
-" The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
-let g:vista_fzf_preview = ['right:50%']
+" exclude filenames from Ag search
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
 " COC {{
 
@@ -47,7 +52,6 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
-
 
 " Use `[c` and `]c` to navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
@@ -84,7 +88,7 @@ xmap <leader>f  <Plug>(coc-format-selected)
 augroup mygroup
   autocmd!
   " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json,javascript setl formatexpr=CocAction('formatSelected')
+  " autocmd FileType typescript,json,javascript setl formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
@@ -117,6 +121,9 @@ command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport
 " use :Prettier to format file
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
+command! -nargs=0 CocDetail :call CocAction('diagnosticInfo')
+nnoremap <silent> <leader>e  :<C-u>CocDetail<cr>
+
 " Using CocList
 " Show all diagnostics
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
@@ -141,7 +148,6 @@ nnoremap <leader>fef :<C-u>Format<CR>
 
 " }}
 
-
 " CtrlP
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
@@ -158,10 +164,6 @@ nmap <silent> <leader>0 :RainbowParenthesesToggle<cr>
 
 " Scala
 let g:scala_scaladoc_indent = 1
-
-" Elixir
-set formatprg=mix\ format\ -
-autocmd FileType elixir nnoremap <leader>fef :w<CR>:MixFormat<CR>
 
 " Fireplace
 au BufRead,BufNewFile {*.clj} nmap <leader>e :%Eval<CR>
@@ -224,3 +226,7 @@ nmap <silent> t<C-g> :TestVisit<CR>   " t Ctrl+g
 
 " Markdown
 nmap <C-m> <Plug>MarkdownPreviewToggle
+
+" Http
+let g:vim_http_tempbuffer = 1
+nmap <leader>tt :Http!<CR>
