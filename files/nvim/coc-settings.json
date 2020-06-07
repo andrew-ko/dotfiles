@@ -12,5 +12,9 @@
   "highlight.colors.enable": false,
   "java.errors.incompleteClasspath.severity": "ignore",
   "tsserver.enableJavascript": false,
-  "eslint.run": "onSave"
+  "eslint.run": "onSave",
+  "solargraph.diagnostics": false,
+  "diagnostic-languageserver.filetypes": {
+    "sh": "shellcheck"
+  }
 }

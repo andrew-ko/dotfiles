@@ -4,12 +4,15 @@ autocmd BufRead,BufNewFile {*.tsx} set ft=typescript.tsx
 " Flutter
 command! -nargs=0 FlutterRun :CocCommand flutter.run
 command! -nargs=0 PubGet :CocCommand flutter.pub.get
+" Open flutter only commands list
+command! -nargs=0 FlutterCommands :CocList --input=flutter commands
+" Hot restart
+command! -nargs=0 FlutterRestart :CocCommand flutter.dev.hotRestart
 
 " Dart
-" let g:dart_format_on_save = 1
+let g:dart_style_guide = 2
 
 " FZF
-
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
@@ -25,12 +28,14 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
-autocmd! FileType fzf
-autocmd  FileType fzf set laststatus=0 noshowmode noruler
+" Hide status line
+autocmd! FileType fzf set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-
-" exclude filenames from Ag search
+" Exclude filenames from Ag search
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
+" Files command use 'cat' for preview
+command! -bang -nargs=? -complete=dir Files
+      \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--preview', 'cat {}']}, <bang>0)
 
 " COC {{
 
@@ -75,6 +80,10 @@ function! s:show_documentation()
   endif
 endfunction
 
+" Scroll hover pop-up
+nnoremap <expr><C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-f>"
+nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
+
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
@@ -83,7 +92,6 @@ nmap <leader>rn <Plug>(coc-rename)
 
 " Remap for format selected region
 xmap <leader>f  <Plug>(coc-format-selected)
-" nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -100,7 +108,6 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 " Remap for do codeAction of current line
 nmap <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
-nmap <leader>fix  <Plug>(coc-fix-current)
 nmap <leader>x  <Plug>(coc-fix-current)
 
 " Use <tab> for select selections ranges, needs server support, like: coc-tsserver, coc-python
@@ -191,12 +198,6 @@ nmap <silent> <leader><leader> :NERDTreeToggle<cr>
 " Startify
 let g:startify_commands = [ { ',': 'NERDTreeToggle' } ]
 let g:startify_custom_indices = ['o']
-
-" DelimitMate
-let delimitMate_expand_cr = 1
-let delimitMate_jump_expansion = 1
-let delimitMate_expand_space = 1
-au FileType clojure let b:delimitMate_quotes = "\" "
 
 " Editorconfig
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']

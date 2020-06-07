@@ -8,11 +8,10 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Utilities
-Plug 'Raimondi/delimitMate' " provides insert mode auto-completion for quotes, parens, brackets, etc.
+Plug 'jiangmiao/auto-pairs' " Insert or delete brackets, parens, quotes in pair.
 Plug 'SirVer/ultisnips'
 Plug 'airblade/vim-gitgutter'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'janko-m/vim-test'
 Plug 'jeetsukumaran/vim-buffergator' " Use <Leader>b to open a window listing all buffers
@@ -90,35 +89,35 @@ set laststatus=2
 syntax on
 
 let mapleader = ','
-let g:mapleader = ','
 
 " Colors ---------------------------------------------------
 
 " Gruvbox {{
-" set background=dark
-" let g:gruvbox_italic=1
-" " let g:gruvbox_bold=0
-" let g:gruvbox_hls_cursor='faded_aqua'
-" colorscheme gruvbox
+set background=dark
+let g:gruvbox_italic=1
+" let g:gruvbox_bold=0
+let g:gruvbox_hls_cursor='aqua'
+colorscheme gruvbox
+
 " }}
 
 " PaperColor {{
-let g:PaperColor_Theme_Options = {
-      \   'theme': {
-      \     'default': {
-      \       'allow_bold': 0,
-      \       'allow_italic': 1,
-      \       'transparent_background': 0
-      \     }
-      \   },
-      \ }
-set background=light
-colorscheme PaperColor
-hi link typescriptType Special
-hi link typescriptNull Conditional
-hi! link NERDTreeDirSlash Keyword
-hi! link NERDTreeDir Keyword
-hi! link NERDTreeHelp Comment
+" let g:PaperColor_Theme_Options = {
+"       \   'theme': {
+"       \     'default': {
+"       \       'allow_bold': 0,
+"       \       'allow_italic': 1,
+"       \       'transparent_background': 0
+"       \     }
+"       \   },
+"       \ }
+" set background=light
+" colorscheme PaperColor
+" hi link typescriptType Special
+" hi link typescriptNull Conditional
+" hi! link NERDTreeDirSlash Keyword
+" hi! link NERDTreeDir Keyword
+" hi! link NERDTreeHelp Comment
 " }}
 
 " Nord {{
@@ -150,6 +149,8 @@ autocmd FileType gitcommit,markdown setlocal spell
 " Set some filetypes
 autocmd BufRead,BufNewFile {.babelrc,composer.lock,.eslintrc} set ft=json
 autocmd BufRead,BufNewFile {.flowconfig} set ft=dosini
+autocmd BufRead,BufNewFile {Fastfile} set ft=ruby
+autocmd BufRead,BufNewFile {.env} set ft=conf
 " Always jump to the last known cursor position.
 autocmd BufReadPost *
       \ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -157,4 +158,5 @@ autocmd BufReadPost *
       \ endif
 " Allow comments in json
 autocmd FileType json syntax match Comment +\/\/.\+$+
-
+" Terminal cursor on exit vim. Cursor style isn't restored after exiting Nvim
+autocmd VimLeave * set guicursor=a:hor20-blinkon0

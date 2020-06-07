@@ -50,3 +50,6 @@ nnoremap <leader>ff :Files<CR>
 
 " Closes current window, unless it is the last one
 nmap <leader>c :close<CR>
+
+" Repeat last colon command (rd = re-do)
+nmap <leader>rd :<Up><CR>

@@ -6,11 +6,10 @@
 - clean: ['~', '~/.config']
 
 - link:
-    ~/.bash_profile: files/bash_profile
     ~/.bash_aliases: files/bash_aliases
-    ~/.zshrc: files/zshrc
-    ~/.gitconfig: files/gitconfig
     ~/.config/nvim: files/nvim
+    ~/.gitconfig: files/gitconfig
+    ~/.zshrc: files/zshrc
 
 - shell:
   - ["curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
