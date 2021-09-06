@@ -53,3 +53,6 @@ nmap <leader>c :close<CR>
 
 " Repeat last colon command (rd = re-do)
 nmap <leader>rd :<Up><CR>
+
+" Save without formatting
+nmap <leader>ew :noa w<CR>

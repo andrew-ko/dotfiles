@@ -8,12 +8,12 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Utilities
-Plug 'jiangmiao/auto-pairs' " Insert or delete brackets, parens, quotes in pair.
+Plug 'Raimondi/delimitMate' " provides insert mode auto-completion for quotes, parens, brackets, etc.
 Plug 'SirVer/ultisnips'
 Plug 'airblade/vim-gitgutter'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'janko-m/vim-test'
+Plug 'vim-test/vim-test'
 Plug 'jeetsukumaran/vim-buffergator' " Use <Leader>b to open a window listing all buffers
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -29,31 +29,33 @@ Plug 'tpope/vim-repeat' " enable repeating supported plugin maps with '.'
 Plug 'tpope/vim-sleuth' " This plugin automatically adjusts 'shiftwidth' and 'expandtab' heuristically based on the current file
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired' " pairs of handy bracket mappings
-Plug 'nicwest/vim-http'
+Plug 'rlue/vim-barbaric'
+Plug 'ashisha/image.vim'
 
-" Language-specific
-Plug 'leafgarland/typescript-vim'
-Plug 'ianks/vim-tsx'
-Plug 'vim-ruby/vim-ruby',                { 'for': 'ruby' }
-Plug 'tpope/vim-rails',                  { 'for': 'ruby' }
-Plug 'guns/vim-clojure-static',          { 'for': 'clojure' }
-Plug 'guns/vim-clojure-highlight',       { 'for': 'clojure' }
-Plug 'tpope/vim-fireplace',              { 'for': 'clojure' }
-Plug 'kien/rainbow_parentheses.vim',     { 'for': 'clojure' }
-Plug 'bhurlow/vim-parinfer',             { 'for': 'clojure' }
-Plug 'elixir-editors/vim-elixir',        { 'for': ['elixir', 'eelixir'] }
-Plug 'derekwyatt/vim-scala',             { 'for': 'scala' }
-Plug 'elmcast/elm-vim',                  { 'for': 'elm' }
-Plug 'posva/vim-vue',                    { 'for': 'vue' }
-Plug 'keith/swift.vim',                  { 'for': 'swift' }
-Plug 'gregsexton/MatchTag',              { 'for': ['html', 'vue'] }
-Plug 'othree/html5.vim',                 { 'for': ['html', 'vue'] }
-Plug 'groenewege/vim-less',              { 'for': 'less' }
-Plug 'cakebaker/scss-syntax.vim',        { 'for': 'scss' }
-Plug 'hail2u/vim-css3-syntax',           { 'for': ['css', 'less', 'vue'] }
-Plug 'iamcco/markdown-preview.nvim',     { 'do': 'cd app & yarn install', 'for': 'markdown'  }
-Plug 'jxnblk/vim-mdx-js',                { 'for': 'markdown.mdx' }
-Plug 'dart-lang/dart-vim-plugin',        { 'for': 'dart' }
+" Language-specifi
+Plug 'leafgarland/typescript-vim',                 { 'for': 'typescript' }
+Plug 'ianks/vim-tsx',                              { 'for': 'typescript.tsx' }
+Plug 'vim-ruby/vim-ruby',                          { 'for': 'ruby' }
+Plug 'tpope/vim-rails',                            { 'for': 'ruby' }
+Plug 'tpope/vim-bundler',                          { 'for': 'ruby' }
+Plug 'guns/vim-sexp',                              { 'for': 'clojure' }
+Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
+Plug 'liquidz/vim-iced',                           { 'for': 'clojure' }
+Plug 'liquidz/vim-iced-coc-source',                { 'for': 'clojure' }
+Plug 'elixir-editors/vim-elixir',                  { 'for': ['elixir', 'eelixir'] }
+Plug 'derekwyatt/vim-scala',                       { 'for': 'scala' }
+Plug 'elmcast/elm-vim',                            { 'for': 'elm' }
+Plug 'posva/vim-vue',                              { 'for': 'vue' }
+Plug 'keith/swift.vim',                            { 'for': 'swift' }
+Plug 'gregsexton/MatchTag',                        { 'for': ['html', 'vue'] }
+Plug 'othree/html5.vim',                           { 'for': ['html', 'vue'] }
+Plug 'joukevandermaas/vim-ember-hbs',              { 'for': 'hbs' }
+Plug 'groenewege/vim-less',                        { 'for': 'less' }
+Plug 'cakebaker/scss-syntax.vim',                  { 'for': 'scss' }
+Plug 'hail2u/vim-css3-syntax',                     { 'for': ['css', 'less', 'vue'] }
+Plug 'iamcco/markdown-preview.nvim',               { 'do': 'cd app & yarn install', 'for': 'markdown'  }
+Plug 'jxnblk/vim-mdx-js',                          { 'for': 'markdown.mdx' }
+Plug 'cespare/vim-toml',                           { 'for': 'toml' }
 
 call plug#end()
 
@@ -90,34 +92,35 @@ syntax on
 
 let mapleader = ','
 
+let g:python3_host_prog = '~/.pyenv/shims/python'
+
 " Colors ---------------------------------------------------
 
 " Gruvbox {{
-set background=dark
-let g:gruvbox_italic=1
-" let g:gruvbox_bold=0
-let g:gruvbox_hls_cursor='aqua'
-colorscheme gruvbox
-
+" set background=dark
+" let g:gruvbox_italic=1
+" " let g:gruvbox_bold=0
+" let g:gruvbox_hls_cursor='aqua'
+" colorscheme gruvbox
 " }}
 
 " PaperColor {{
-" let g:PaperColor_Theme_Options = {
-"       \   'theme': {
-"       \     'default': {
-"       \       'allow_bold': 0,
-"       \       'allow_italic': 1,
-"       \       'transparent_background': 0
-"       \     }
-"       \   },
-"       \ }
-" set background=light
-" colorscheme PaperColor
-" hi link typescriptType Special
-" hi link typescriptNull Conditional
-" hi! link NERDTreeDirSlash Keyword
-" hi! link NERDTreeDir Keyword
-" hi! link NERDTreeHelp Comment
+let g:PaperColor_Theme_Options = {
+      \   'theme': {
+      \     'default': {
+      \       'allow_bold': 0,
+      \       'allow_italic': 1,
+      \       'transparent_background': 0
+      \     }
+      \   },
+      \ }
+set background=light
+colorscheme PaperColor
+hi link typescriptType Special
+hi link typescriptNull Conditional
+hi! link NERDTreeDirSlash Keyword
+hi! link NERDTreeDir Keyword
+hi! link NERDTreeHelp Comment
 " }}
 
 " Nord {{
@@ -147,16 +150,15 @@ autocmd BufWritePre * :%s/\s\+$//e
 " Enable spelling for some filetypes
 autocmd FileType gitcommit,markdown setlocal spell
 " Set some filetypes
-autocmd BufRead,BufNewFile {.babelrc,composer.lock,.eslintrc} set ft=json
+autocmd BufRead,BufNewFile {.babelrc,.eslintrc} set ft=json
 autocmd BufRead,BufNewFile {.flowconfig} set ft=dosini
-autocmd BufRead,BufNewFile {Fastfile} set ft=ruby
+autocmd BufRead,BufNewFile {Fastfile,Pluginfile} set ft=ruby
+autocmd BufRead,BufNewFile {Pipfile} set ft=toml
 autocmd BufRead,BufNewFile {.env} set ft=conf
 " Always jump to the last known cursor position.
 autocmd BufReadPost *
       \ if line("'\"") > 0 && line("'\"") <= line("$") |
       \   exe "normal g`\"" |
       \ endif
-" Allow comments in json
-autocmd FileType json syntax match Comment +\/\/.\+$+
 " Terminal cursor on exit vim. Cursor style isn't restored after exiting Nvim
 autocmd VimLeave * set guicursor=a:hor20-blinkon0

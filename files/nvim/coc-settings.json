@@ -1,20 +1,70 @@
 {
+  "coc.preferences.extensionUpdateCheck": "weekly",
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
     "javascriptreact",
     "json",
     "typescript",
     "typescriptreact",
-    "dart",
     "elixir",
-    "eelixir"
+    "eelixir",
+    "python",
+    "ruby",
+    "vue"
   ],
-  "highlight.colors.enable": false,
-  "java.errors.incompleteClasspath.severity": "ignore",
-  "tsserver.enableJavascript": false,
+
+  "prettier.disableLanguages": [],
+
   "eslint.run": "onSave",
+
+  "highlight.colors.enable": false,
+
+  "signature.hideOnTextChange": true,
+
   "solargraph.diagnostics": false,
+  "solargraph.formatting": true,
+  "solargraph.useBundler": false,
+  "solargraph.checkGemVersion": true,
+  "solargraph.bundlerPath": "/Users/kovalenko/.asdf/shims/bundle",
+  "solargraph.commandPath": "/Users/kovalenko/.asdf/shims/solargraph",
+
+  "json.schemas": [
+    {
+      "fileMatch": ["tsconfig.json"],
+      "schema": { "allowComments": true }
+    }
+  ],
+
+  "coc.source.iced.enable": true,
+
+  "diagnostic-languageserver.linters": {
+    "clj_kondo_lint": {
+      "command": "clj-kondo",
+      "debounce": 100,
+      "args": ["--lint", "%filepath"],
+      "offsetLine": 0,
+      "offsetColumn": 0,
+      "sourceName": "clj-kondo",
+      "formatLines": 1,
+      "formatPattern": [
+        "^[^:]+:(\\d+):(\\d+):\\s+([^:]+):\\s+(.*)$",
+        {
+          "line": 1,
+          "column": 2,
+          "message": 4,
+          "security": 3
+        }
+      ],
+      "securities": {
+        "error": "error",
+        "warning": "warning",
+        "note": "info"
+      }
+    }
+  },
   "diagnostic-languageserver.filetypes": {
-    "sh": "shellcheck"
-  }
+    "sh": "shellcheck",
+    "clojure": "clj_kondo_lint"
+  },
+  "java.errors.incompleteClasspath.severity": "ignore"
 }

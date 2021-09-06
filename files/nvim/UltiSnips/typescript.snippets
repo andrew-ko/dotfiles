@@ -2,6 +2,10 @@ snippet cl
 console.log($0)
 endsnippet
 
+snippet in
+console.log('$1', $1)
+endsnippet
+
 snippet clp
 console.log('props', $1) ||$0
 endsnippet
@@ -23,13 +27,15 @@ endsnippet
 snippet rfc
 import React, { FC } from "react";
 
-const ${1}: FC<Props> = () => (
+interface Props {}
+
+const ${1}: FC<Props> = () => {
   return (
     <div>
       $1
     </div>
-  )
-}
+  );
+};
 
 export default $1
 endsnippet
@@ -39,13 +45,16 @@ import React, { FC } from "react";
 import { Text, View } from "react-native";
 
 import s from "./styles";
-import { Props } from "./types";
 
-const ${1}: FC<Props> = () => (
-  <View style={s.container}>
-    <Text>$1</Text>
-  </View>
-);
+interface Props {}
+
+const ${1}: FC<Props> = () => {
+  return (
+    <View style={s.container}>
+      <Text>$1</Text>
+    </View>
+  );
+};
 
 export default $1;
 endsnippet

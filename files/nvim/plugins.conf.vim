@@ -1,6 +1,9 @@
 " TSX
 autocmd BufRead,BufNewFile {*.tsx} set ft=typescript.tsx
 
+" Iced
+let g:iced_enable_default_key_mappings = v:true
+
 " Flutter
 command! -nargs=0 FlutterRun :CocCommand flutter.run
 command! -nargs=0 PubGet :CocCommand flutter.pub.get
@@ -9,15 +12,12 @@ command! -nargs=0 FlutterCommands :CocList --input=flutter commands
 " Hot restart
 command! -nargs=0 FlutterRestart :CocCommand flutter.dev.hotRestart
 
-" Dart
-let g:dart_style_guide = 2
-
 " FZF
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
   \ 'hl':      ['fg', 'Keyword'],
-  \ 'hl+':      ['fg', 'Float'],
+  \ 'hl+':     ['fg', 'Float'],
   \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
   \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
   \ 'info':    ['fg', 'PreProc'],
@@ -81,8 +81,8 @@ function! s:show_documentation()
 endfunction
 
 " Scroll hover pop-up
-nnoremap <expr><C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-f>"
-nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
+nnoremap <expr><C-f> coc#float#has_float() ? coc#float#scroll(1) : "\<C-f>"
+nnoremap <expr><C-b> coc#float#has_float() ? coc#float#scroll(0) : "\<C-b>"
 
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -150,8 +150,6 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-" Format file
-nnoremap <leader>fef :<C-u>Format<CR>
 
 " }}
 
@@ -199,6 +197,12 @@ nmap <silent> <leader><leader> :NERDTreeToggle<cr>
 let g:startify_commands = [ { ',': 'NERDTreeToggle' } ]
 let g:startify_custom_indices = ['o']
 
+" DelimitMate
+let delimitMate_expand_cr = 1
+let delimitMate_jump_expansion = 1
+let delimitMate_expand_space = 1
+au FileType clojure let b:delimitMate_quotes = "\" "
+
 " Editorconfig
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
@@ -207,7 +211,7 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " Fugitive
-nmap <leader>st :Gstatus<ESC>
+nmap <leader>st :Git<ESC>
 
 " Gitgutter
 let g:gitgutter_max_signs = 999
