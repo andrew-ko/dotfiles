@@ -40,8 +40,6 @@ Plug 'tpope/vim-rails',                            { 'for': 'ruby' }
 Plug 'tpope/vim-bundler',                          { 'for': 'ruby' }
 Plug 'guns/vim-sexp',                              { 'for': 'clojure' }
 Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
-Plug 'liquidz/vim-iced',                           { 'for': 'clojure' }
-Plug 'liquidz/vim-iced-coc-source',                { 'for': 'clojure' }
 Plug 'elixir-editors/vim-elixir',                  { 'for': ['elixir', 'eelixir'] }
 Plug 'derekwyatt/vim-scala',                       { 'for': 'scala' }
 Plug 'elmcast/elm-vim',                            { 'for': 'elm' }
@@ -92,7 +90,8 @@ syntax on
 
 let mapleader = ','
 
-let g:python3_host_prog = '~/.pyenv/shims/python'
+let g:python_host_prog = '~/.asdf/shims/python2'
+let g:python3_host_prog = '~/.asdf/shims/python'
 
 " Colors ---------------------------------------------------
 
@@ -147,9 +146,9 @@ endif
 
 " Automatically remove all trailing whitespaces
 autocmd BufWritePre * :%s/\s\+$//e
-" Enable spelling for some filetypes
+" Spelling
 autocmd FileType gitcommit,markdown setlocal spell
-" Set some filetypes
+" Filetypes
 autocmd BufRead,BufNewFile {.babelrc,.eslintrc} set ft=json
 autocmd BufRead,BufNewFile {.flowconfig} set ft=dosini
 autocmd BufRead,BufNewFile {Fastfile,Pluginfile} set ft=ruby
