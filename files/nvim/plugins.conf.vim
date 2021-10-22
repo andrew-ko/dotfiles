@@ -210,9 +210,6 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
-" Fugitive
-nmap <leader>st :Git<ESC>
-
 " Gitgutter
 let g:gitgutter_max_signs = 999
 

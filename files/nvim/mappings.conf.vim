@@ -56,3 +56,7 @@ nmap <leader>rd :<Up><CR>
 
 " Save without formatting
 nmap <leader>ew :noa w<CR>
+
+" Git
+nmap <leader>st :Git<ESC>
+nmap <leader>sb :Git blame<ESC>
