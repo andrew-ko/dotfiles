@@ -5,7 +5,7 @@ alias gires="git reset --soft HEAD~1"
 alias co="git checkout \$(git branch | fzf)"
 
 alias v="nvim"
-alias nvim-config="nvim ~/.config/nvim/init.vim"
+alias nvim-config="nvim ~/.config/nvim/lua/plugins.lua"
 
 alias dm="adb shell input keyevent 82"
 alias rr="adb shell input text RR"
@@ -18,5 +18,4 @@ alias tl="tree -CL 1"
 alias d="cd ~"
 alias c="clear"
 
-alias remove-merged-branches="git branch --merged >/tmp/merged-branches && nvim /tmp/merged-branches && xargs git branch -d </tmp/merged-branches"
 alias remove-local-branches="git branch >/tmp/merged-branches && nvim /tmp/merged-branches && xargs git branch -D </tmp/merged-branches"

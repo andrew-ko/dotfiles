@@ -1,0 +1,15 @@
+{
+  "packer use": {
+    "prefix": [
+      "u",
+      "use"
+    ],
+    "body": [
+      "use {",
+      "  '$1',",
+      "  config = function()$0",
+      "  end",
+      "}"
+    ]
+  }
+}

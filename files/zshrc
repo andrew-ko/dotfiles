@@ -70,7 +70,7 @@ plugins=(
   colored-man-pages
   colorize
   git
-  osx
+  macos
   vi-mode
 )
 
@@ -101,6 +101,8 @@ fi
 # For a full list of active aliases, run `alias`.
 source ~/.bash_aliases
 alias zshconfig="nvim ~/.zshrc"
+
+source <(kubectl completion zsh)
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
@@ -133,6 +135,9 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS="--history=$HOME/.fzf_history --height 40% --layout=reverse"
 
 . /usr/local/opt/asdf/libexec/asdf.sh
+
+# Rust
+. "$HOME/.cargo/env"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
