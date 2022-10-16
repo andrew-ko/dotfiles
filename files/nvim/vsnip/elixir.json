@@ -14,5 +14,9 @@
   "do": {
     "prefix": "do",
     "body": ["do", "  $0", "end"]
+  },
+  "IO.puts": {
+    "prefix": "p",
+    "body": "IO.puts($0)"
   }
 }

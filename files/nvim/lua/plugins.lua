@@ -46,6 +46,7 @@ return require('packer').startup({ function(use)
     config = function()
       vim.g.startify_commands = { { [','] = 'NERDTreeToggle' } }
       vim.g.startify_custom_indices = { 'o' }
+      vim.g.startify_change_to_vcs_root = 1
     end
   }
 
@@ -145,13 +146,6 @@ return require('packer').startup({ function(use)
   require('plugins/color').start(use)
   require('plugins/lsp').start(use)
   require('plugins/telescope').start(use)
-
-  -- https://github.com/dhruvasagar/vim-table-mode
-  -- https://github.com/beauwilliams/focus.nvim
-  -- https://github.com/folke/which-key.nvim
-  -- https://github.com/mfussenegger/nvim-dap
-  -- https://github.com/Pocco81/dap-buddy.nvim
-  -- https://github.com/kosayoda/nvim-lightbulb
 end,
   config = {
     display = {
