@@ -40,3 +40,6 @@ vim.g.maplocalleader = ','
 -- python path
 vim.g.python_host_prog = '~/.asdf/shims/python2'
 vim.g.python3_host_prog = '~/.asdf/shims/python'
+
+-- Ukrainian langmap for basic nav
+vim.o.langmap = [[рh,оj,лk,дl,уe,иb,іs,шi,фa,щo,нy,вd,мv,гu,х[,ю.]]

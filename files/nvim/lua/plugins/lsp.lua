@@ -1,14 +1,12 @@
 local M = {}
 
 function M.start(use)
-  use 'neovim/nvim-lspconfig'
-
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-vsnip'
 
-  use "b0o/schemastore.nvim"
+  use 'b0o/schemastore.nvim'
 
   use {
     'hrsh7th/nvim-cmp',
@@ -32,7 +30,6 @@ function M.start(use)
         },
         window = {
           completion = cmp.config.window.bordered(),
-          -- documentation = cmp.config.window.bordered(),
         },
         mapping = cmp.mapping.preset.insert({
           ['<Tab>'] = function(fallback)
@@ -62,62 +59,44 @@ function M.start(use)
     end
   }
 
-
   use {
     'williamboman/mason.nvim',
+    run = ":MasonUpdate", -- :MasonUpdate updates registry contents
     config = function()
       require('mason').setup()
     end
   }
 
+  -- use {
+  --   'williamboman/mason-lspconfig.nvim',
+  --   config = function()
+  --     require('mason-lspconfig').setup({
+  --       -- A list of servers to automatically install if they're not already installed. Example: { "rust-analyzer@nightly", "sumneko_lua" }
+  --       ensure_installed = {},
+  --       -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed.
+  --       automatic_installation = true,
+  --     })
+  --   end
+  -- }
+
+  use 'jose-elias-alvarez/null-ls.nvim'
+
   use {
-    'williamboman/mason-lspconfig.nvim',
+    'neovim/nvim-lspconfig',
     config = function()
-      require('mason-lspconfig').setup({
-        -- A list of servers to automatically install if they're not already installed. Example: { "rust-analyzer@nightly", "sumneko_lua" }
-        ensure_installed = {},
-        -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed.
-        automatic_installation = true,
+      local util = require('lspconfig.util')
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      local null_ls = require("null-ls")
+
+      null_ls.setup({
+        sources = {
+          null_ls.builtins.formatting.prettierd,
+          null_ls.builtins.diagnostics.eslint_d,
+        },
       })
 
-      vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
-      vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-      vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-      vim.keymap.set('n', '<leader>d', vim.diagnostic.goto_next)
-      vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
-
-      -- Use an on_attach function to only map the following keys
-      -- after the language server attaches to the current buffer
-      local on_attach = function(_, bufnr)
-        -- Enable completion triggered by <c-x><c-o>
-        vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-        -- Mappings.
-        -- See `:help vim.lsp.*` for documentation on any of the below functions
-        local bufopts = { silent = true, buffer = bufnr }
-        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-        vim.keymap.set('n', '<space>d', vim.lsp.buf.definition, bufopts)
-        vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-        vim.keymap.set('n', 'L', vim.lsp.buf.signature_help, bufopts)
-        vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-        vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-        vim.keymap.set('n', '<space>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, bufopts)
-        vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-        vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-        vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-        vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-        vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
-      end
-
-      local util = require('lspconfig.util')
-      local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-
-
-      require('lspconfig').sumneko_lua.setup({
+      require('lspconfig').lua_ls.setup({
         capabilities = capabilities,
-        on_attach = on_attach,
         settings = {
           Lua = {
             runtime = {
@@ -141,20 +120,90 @@ function M.start(use)
       })
 
       require('lspconfig').elixirls.setup({
+        cmd = { vim.fn.stdpath "data" .. "/mason/bin/elixir-ls" },
         capabilities = capabilities,
-        on_attach = on_attach,
         root_dir = util.root_pattern(".git"),
+        settings = {
+          elixirLS = {
+            dialyzerEnabled = false
+          }
+        }
+      })
+
+      require('lspconfig').tsserver.setup({
+        capabilities = capabilities,
+        root_dir = util.root_pattern(".git"),
+      })
+
+      require('lspconfig').rust_analyzer.setup({
+        capabilities = capabilities,
       })
 
       require('lspconfig').jsonls.setup({
         capabilities = capabilities,
-        on_attach = on_attach,
         settings = {
           json = {
             schemas = require('schemastore').json.schemas(),
             validate = { enable = true },
           }
         }
+      })
+
+      require('lspconfig').emmet_ls.setup({
+        capabilities = capabilities,
+        filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' },
+        init_options = {
+          html = {
+            options = {
+              -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
+              ["output.selfClosingStyle"] = "xhtml",
+            },
+          },
+        }
+      })
+
+      vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
+      vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+      vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+      vim.keymap.set('n', '<leader>d', vim.diagnostic.goto_next)
+      vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
+
+      -- Use LspAttach autocommand to only map the following keys
+      -- after the language server attaches to the current buffer
+      vim.api.nvim_create_autocmd('LspAttach', {
+        group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+        callback = function(ev)
+          -- Enable completion triggered by <c-x><c-o>
+          vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+
+          -- Buffer local mappings.
+          -- See `:help vim.lsp.*` for documentation on any of the below functions
+          local opts = { silent = true, buffer = ev.bufnr }
+          vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+          vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+          vim.keymap.set('n', '<space>d', vim.lsp.buf.definition, opts)
+          vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+          vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+          vim.keymap.set('n', 'L', vim.lsp.buf.signature_help, opts)
+          vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
+          vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
+          vim.keymap.set('n', '<space>wl', function()
+            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+          end, opts)
+          vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
+          vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
+          vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, opts)
+          vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+          vim.keymap.set('n', '<space>f', function()
+            vim.lsp.buf.format {
+              async = true,
+              filter = function(client)
+                local exclude = { tsserver = true, jsonls = true }
+                return not exclude[client.name]
+              end,
+            }
+          end, opts)
+        end
       })
     end
   }

@@ -1,27 +1,27 @@
 local M = {}
 
 function M.start(use)
-
-  --[[ Themes support treesitter:
-    https://github.com/folke/tokyonight.nvim
-    https://github.com/rebelot/kanagawa.nvim
-    https://github.com/sainnhe/everforest
-    https://github.com/sainnhe/gruvbox-material
-    https://github.com/shaunsingh/nord.nvim
-  --]]
-
   use {
     'folke/tokyonight.nvim',
     config = function()
       require("tokyonight").setup({
-        style = "storm", -- "storm", "night", "moon", "day"
+        style = "storm",     -- "storm", "night", "moon", "day"
         transparent = false,
-        -- hide_inactive_statusline = true, -- Enabling this option, will hide inactive statuslines and replace them with a thin border instead
-        -- lualine_bold = true, -- When `true`, section headers in the lualine theme will be bold                                                                                                  |
+        lualine_bold = true, -- When `true`, section headers in the lualine theme will be bold                                                                                                  |
       })
       vim.cmd [[colorscheme tokyonight]]
     end
   }
+
+  -- use {
+  --   'shaunsingh/nord.nvim',
+  --   config = function()
+  --     vim.g.nord_italic = false
+  --     -- vim.g.nord_bold = false
+  --     require('nord').set()
+  --     vim.cmd [[colorscheme nord]]
+  --   end
+  -- }
 
   -- use {
   --   'rebelot/kanagawa.nvim',

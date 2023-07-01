@@ -18,5 +18,9 @@
   "IO.puts": {
     "prefix": "p",
     "body": "IO.puts($0)"
+  },
+  "puts with label": {
+    "prefix": "pu",
+    "body": "IO.puts(\"$1: #{inspect($1)}\")"
   }
 }

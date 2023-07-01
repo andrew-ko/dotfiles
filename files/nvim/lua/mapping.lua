@@ -37,7 +37,7 @@ vim.keymap.set('n', '<leader>rd', ':<Up><CR>')
 vim.keymap.set('n', '<leader>ew', ':noa w<CR>')
 
 -- git
-vim.keymap.set('n', '<leader>st', ':Git<ESC>')
+vim.keymap.set('n', '<leader>st', ':16split|0Git|5<ESC>')
 vim.keymap.set('n', '<leader>sb', ':Git blame<ESC>')
 
 vim.keymap.set('n', '<space>h', ':diffget //2<CR>')
@@ -51,4 +51,3 @@ vim.keymap.set('n', '<space>grs', ':Git reset --soft HEAD~1<CR>')
 -- packer sync
 vim.keymap.set('n', '<space>ps', ':PackerSync<CR>')
 vim.keymap.set('n', '<space>pc', ':PackerClean<CR>')
-

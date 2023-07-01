@@ -4,7 +4,6 @@
 [core]
 	editor = "nvim"
 	autocrlf = input
-	excludesfile = /Users/kovalenko/.gitignore_global
 [alias]
 	st = status
 	last = log -1 HEAD

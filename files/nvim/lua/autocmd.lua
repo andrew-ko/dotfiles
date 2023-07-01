@@ -4,7 +4,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 -- map filetypes
-local function set_ft (pattern, ft)
+local function set_ft(pattern, ft)
   vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     pattern = pattern,
     callback = function()
@@ -15,14 +15,9 @@ end
 
 set_ft({ "Fastfile", "Pluginfile" }, "ruby")
 set_ft({ ".env" }, "conf")
-
--- enable spell check for filetypes
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "gitcommit", "markdown" },
-  callback = function()
-    vim.wo.spell = true
-  end
-})
+set_ft({ ".env.*" }, "conf")
+set_ft({ ".prettierignore" }, "conf")
+set_ft({ ".eslintignore" }, "conf")
 
 -- jump to the last known cursor position
 vim.api.nvim_create_autocmd("BufReadPost", {

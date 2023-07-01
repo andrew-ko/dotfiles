@@ -1,3 +1,5 @@
 backups
 plugged
 .netrwhist
+.luarc.json
+packer_compiled.lua
