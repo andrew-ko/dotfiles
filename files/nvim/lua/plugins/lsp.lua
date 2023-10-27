@@ -52,7 +52,6 @@ function M.start(use)
           { name = 'nvim_lsp' },
           { name = 'vsnip' },
           { name = 'path' },
-        }, {
           { name = 'buffer' },
         }),
       })

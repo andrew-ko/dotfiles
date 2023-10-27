@@ -19,3 +19,4 @@ alias d="cd ~"
 alias c="clear"
 
 alias remove-local-branches="git branch >/tmp/merged-branches && nvim /tmp/merged-branches && xargs git branch -D </tmp/merged-branches"
+alias remove-local-tags="git tag -l | xargs git tag -d"
