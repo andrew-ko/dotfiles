@@ -90,7 +90,7 @@ function M.start(use)
       null_ls.setup({
         sources = {
           null_ls.builtins.formatting.prettierd,
-          null_ls.builtins.diagnostics.eslint_d,
+          null_ls.builtins.diagnostics.eslint,
         },
       })
 
@@ -148,18 +148,52 @@ function M.start(use)
         }
       })
 
-      require('lspconfig').emmet_ls.setup({
-        capabilities = capabilities,
-        filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' },
-        init_options = {
-          html = {
-            options = {
-              -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
-              ["output.selfClosingStyle"] = "xhtml",
-            },
-          },
-        }
+      require('lspconfig').pylsp.setup({
+        settings = {
+          pylsp = {
+            plugins = {
+              -- formatter options
+              black = { enabled = true },
+              autopep8 = { enabled = false },
+              yapf = { enabled = false },
+              -- linter options
+              flake8 = { enabled = true },
+              pyflakes = { enabled = false },
+              pycodestyle = { enabled = false },
+              mccabe = { enabled = false },
+              pylint = { enabled = false, executable = "pylint" },
+              ruff = { enabled = false },
+              -- type checker
+              pylsp_mypy = {
+                enabled = false,
+                -- overrides = { "--python-executable", py_path, true },
+                report_progress = true,
+                live_mode = false
+              },
+              -- auto-completion options
+              jedi_completion = { enabled = false, fuzzy = true },
+              -- import sorting
+              isort = { enabled = true },
+            }
+          }
+        },
+        -- flags = {
+        --   debounce_text_changes = 200,
+        -- },
       })
+
+      -- require('lspconfig').emmet_ls.setup({
+      --   capabilities = capabilities,
+      --   filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' },
+      --   init_options = {
+      --     html = {
+      --       options = {
+      --         -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
+      --         ["output.selfClosingStyle"] = "xhtml",
+      --       },
+      --     },
+      --   }
+      -- })
 
       vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
       vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
